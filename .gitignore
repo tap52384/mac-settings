@@ -2,5 +2,9 @@
 *
 
 # But not these files...
+!.bash_profile
+!.exrc
+!.gitconfig
 !.gitignore
+!.vimrc
 # etc...
