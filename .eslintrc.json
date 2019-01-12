@@ -1,0 +1,18 @@
+{
+    "extends": "jquery",
+    "env": {
+	"browser": true,
+	"jquery": true
+    },
+    "parserOptions": {
+	"impliedStrict": true
+    },
+    "rules": {
+	"quotes": ["error", "single"],
+	"comma-dangle": ["error", "only-multiline"]
+    },
+    "globals": {
+	"moment": false,
+	"Highcharts": false
+    }
+}

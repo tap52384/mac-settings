@@ -1,12 +1,22 @@
+# https://stackoverflow.com/a/987162/1620794
 # Ignore everything
 *
 
 # But not these files...
 !.bash_profile
 !.boot_camp_add.sh
+!.eslintrc.json
 !.exrc
 !.gitconfig
 !.gitignore
-!/Library/Application\ Support/Code/User/settings.json
 !.vimrc
 # etc...
+
+# ...even if they are in subdirectories
+!*~/Library/Application\ Support/Code/User/settings.json
+#!*/
+
+# if the files to be tracked are in subdirectories
+#!*/a/b/file1.txt
+#!*/a/b/c/*
+!*~/Library/Application\ Support\Code\User\settings.json
