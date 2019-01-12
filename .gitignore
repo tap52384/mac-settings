@@ -3,6 +3,7 @@
 
 # But not these files...
 !.bash_profile
+!.boot_camp_add.sh
 !.exrc
 !.gitconfig
 !.gitignore
