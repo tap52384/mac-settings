@@ -7,5 +7,6 @@
 !.exrc
 !.gitconfig
 !.gitignore
+!/Library/Application\ Support/Code/User/settings.json
 !.vimrc
 # etc...

@@ -142,4 +142,5 @@ export PATH="/usr/local/bin/python3:$PATH"
 alias ls='ls -G'
 
 # Homebrew Personal Access Token @ GitHub
-export HOMEBREW_GITHUB_API_TOKEN="27edcbedad74f69e6689d8e4cdbe3abac80a2d5d"
+# https://stackoverflow.com/a/20130816/1620794
+export HOMEBREW_GITHUB_API_TOKEN=""
