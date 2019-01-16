@@ -13,10 +13,9 @@
 # etc...
 
 # ...even if they are in subdirectories
-!*~/Library/Application\ Support/Code/User/settings.json
-#!*/
+!*Library/
+
 
 # if the files to be tracked are in subdirectories
 #!*/a/b/file1.txt
 #!*/a/b/c/*
-!*~/Library/Application\ Support\Code\User\settings.json

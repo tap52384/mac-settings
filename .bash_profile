@@ -1,5 +1,3 @@
-neofetch
-
 #
 #   mkcd command
 #   This is an improvised version of the mkcd command at http://superuser.com/questions/152794/is-there-a-shortcut-to-mkdir-foo-and-immediately-cd-into-it
@@ -13,6 +11,48 @@ function mkcd {
   else
     mkdir $@ && cd $last
   fi
+}
+
+function brew_install {
+    # make sure brew installed
+    which brew > /dev/null
+    BREW_INSTALLED=$?
+
+    # 1. If Homebrew is not installed, go ahead and install it
+    if [ ! "$BREW_INSTALLED" -eq 0 ]; then
+        echo "Homebrew not installed; installing now..."
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        which brew > /dev/null
+        BREW_INSTALLED=$?
+    fi
+
+    # stop here if neofetch is already installed;
+    # verifying installed formula can take seconds
+    which neofetch > /dev/null
+    NEOFETCH_INSTALLED=$?
+
+    if [ "$NEOFETCH_INSTALLED" -eq 0 ]; then
+        neofetch
+        return  0;
+    fi
+
+    # list of formulas to install
+    formulas=(neofetch tree webp)
+   
+    # loop through the formulas, install missing ones 
+    for t in ${formulas[@]}; do
+        #echo "checking if $t formula is installed..."
+        brew ls --versions $t > /dev/null
+        formula_installed=$?
+        #echo "$t installed: $formula_installed"
+        if [ ! "$formula_installed" -eq 0 ]; then
+            echo "Installing '$t' formula..."
+            brew install $t
+        fi
+    done
+
+    # open Neofetch
+    neofetch
 }
 
 #
@@ -139,8 +179,12 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 # Add Python 3.6 via Homebrew
 export PATH="/usr/local/bin/python3:$PATH"
 
+# highlights folders in blue using default settings
 alias ls='ls -G'
 
 # Homebrew Personal Access Token @ GitHub
 # https://stackoverflow.com/a/20130816/1620794
 export HOMEBREW_GITHUB_API_TOKEN=""
+
+# install Homebrew and some formulas, then run neofetch
+brew_install
