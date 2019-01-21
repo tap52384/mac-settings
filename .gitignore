@@ -1,8 +1,10 @@
 # https://stackoverflow.com/a/987162/1620794
 # Ignore everything
-*
+/*
 
 # But not these files...
+# Cisco AnyConnect Secure Mobility Client settings
+!.anyconnect
 !.bash_profile
 !.boot_camp_add.sh
 !.eslintrc.json
@@ -14,7 +16,12 @@
 
 # ...even if they are in subdirectories
 !*Library/
+#!/Library/Application\ Support/*
 
+!*.atom/
+!/.atom/**
+
+#!Library/Application\ Support/Code/User/settings.json
 
 # if the files to be tracked are in subdirectories
 #!*/a/b/file1.txt
