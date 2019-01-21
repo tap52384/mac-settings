@@ -41,7 +41,7 @@ function brew_install {
     fi
 
     # list of formulas to install
-    formulas=(neofetch tree webp)
+    formulas=(neofetch tree webp sdl2)
    
     # loop through the formulas, install missing ones 
     for t in ${formulas[@]}; do
@@ -131,6 +131,31 @@ function filestokeep {
 	echo '~/Music/iTunes/'
 	echo '~/sites/certs/'
 }
+
+function musthaveapps {
+        echo 'Adobe Creative Cloud - https://adobe.com'
+        echo 'Backup & Sync        - https://www.google.com/drive/download/backup-and-sync/'
+        echo 'Brother MFC-9130CW   - https://support.brother.com/g/b/producttop.aspx?c=us&lang=en&prod=mfc9130cw_us'
+        echo 'Citrix Workspace     - https://toolbox.its.unc.edu'
+        echo 'DaisyDisk            - https://itunes.apple.com/us/app/daisydisk/id411643860?mt=12'
+        echo 'Docker - https://www.docker.com/'
+        echo 'Flycut - https://github.com/TermiT/Flycut/releases'
+        echo 'iTerm2 - https://iterm2.com/'
+        echo 'Itsycal -              https://www.mowglii.com/itsycal/'
+        echo 'JasperSoft Studio    - https://support.tibco.com/s/'
+        echo 'MacPass - https://macpassapp.org/'
+        echo 'Magnet - https://itunes.apple.com/us/app/magnet/id441258766?mt=12'
+        echo 'MS Remote Desktop 10 - https://itunes.apple.com/us/app/microsoft-remote-desktop-10/id1295203466?mt=12'
+        echo 'MS Teams - https://teams.microsoft.com'
+        echo 'Oracle SQL Developer - https://www.oracle.com/database/technologies/appdev/sql-developer.html'
+        echo 'Postman              - https://www.getpostman.com/'
+        echo 'SAS University       - https://www.sas.com/en_us/software/university-edition.html'
+        echo 'VirtualBox           - https://www.virtualbox.org/'
+        echo 'VLC                  - https://www.videolan.org/'
+        echo 'VS Code - https://code.visualstudio.com/'
+        echo 'Xcode                - https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12'
+}
+
 
 function mycommands {
 	echo 'apacheconf  - edit the configuration file for Apache'
