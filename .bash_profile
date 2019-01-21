@@ -25,6 +25,9 @@ function brew_install {
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         which brew > /dev/null
         BREW_INSTALLED=$?
+        if [ ! "$BREW_INSTALLED" -eq 0 ]; then
+        return 1;
+        fi
     fi
 
     # stop here if neofetch is already installed;
@@ -34,7 +37,7 @@ function brew_install {
 
     if [ "$NEOFETCH_INSTALLED" -eq 0 ]; then
         neofetch
-        return  0;
+        return 0;
     fi
 
     # list of formulas to install
@@ -181,6 +184,9 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 export PATH="/usr/local/bin/python3:$PATH"
 
 # highlights folders in blue using default settings
+# https://www.cyberciti.biz/faq/apple-mac-osx-terminal-color-ls-output-option/
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
 alias ls='ls -G'
 
 # Homebrew Personal Access Token @ GitHub

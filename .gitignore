@@ -18,7 +18,6 @@
 !*Library/**
 !*.atom/**
 !/.atom/config.cson
-
 !Library/Application\ Support/Code/User/settings.json
 
 # if the files to be tracked are in subdirectories
