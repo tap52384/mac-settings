@@ -15,13 +15,11 @@
 # etc...
 
 # ...even if they are in subdirectories
-!*Library/
-#!/Library/Application\ Support/*
+!*Library/**
+!*.atom/**
+!/.atom/config.cson
 
-!*.atom/
-!/.atom/**
-
-#!Library/Application\ Support/Code/User/settings.json
+!Library/Application\ Support/Code/User/settings.json
 
 # if the files to be tracked are in subdirectories
 #!*/a/b/file1.txt

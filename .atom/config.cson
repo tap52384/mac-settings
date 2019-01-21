@@ -1,0 +1,29 @@
+"*":
+  core:
+    telemetryConsent: "limited"
+    themes: [
+      "one-dark-ui"
+      "monokai"
+    ]
+  editor: {}
+  "exception-reporting":
+    userId: "fa9aa21e-46d8-4eac-afba-d3a1f687f8d3"
+  "linter-eslint":
+    disableWhenNoEslintConfig: false
+    eslintrcPath: "/Users/patricklewis/.eslintrc.json"
+    fixOnSave: true
+    globalNodePath: "/usr/local"
+    useGlobalEslint: true
+  "linter-phpcs":
+    executablePath: "/Users/patricklewis/.composer/vendor/squizlabs/php_codesniffer/bin/phpcs"
+  "linter-phpmd":
+    executablePath: "/Users/patricklewis/.composer/vendor/phpmd/phpmd/src/bin/phpmd"
+  "linter-ui-default":
+    panelHeight: 187
+    showPanel: true
+  "markdown-preview":
+    useGitHubStyle: true
+".blade.html.php.text":
+  editor:
+    commentEnd: " --}}"
+    commentStart: "{{-- "
