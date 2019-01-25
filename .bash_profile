@@ -105,6 +105,12 @@ function app_store_install {
         '497799835'  # Xcode
         '441258766'  # Magnet
         '1295203466' # Microsoft Remote Desktop 10.0
+        '462054704'  # Microsoft Word
+        '784801555'  # Microsoft OneNote
+        '462062816'  # Microsoft PowerPoint
+        '462058435'  # Microsoft Excel
+        '985367838'  # Microsoft Outlook
+        '682658836'  # Garageband
     )
 
     # loop through the formulas, install missing ones
