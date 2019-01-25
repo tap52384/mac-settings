@@ -14,6 +14,156 @@ function mkcd {
   fi
 }
 
+#
+#   Update all Homebrew, Atom, and VS Code packages
+function update_formulas {
+    brew update
+    brew upgrade
+    brew cleanup -s
+    brew doctor
+    brew missing
+    # Update all Atom packages
+    apm upgrade -c false
+
+}
+
+function install_casks {
+    # Install Homebrew Cask
+        update_formulas
+
+        # Ask for the administrator password
+        sudo -v
+
+        # Xcode Command Line Tools
+        xcode-select --install
+
+        # Install apps via Homebrew Cask
+        casks=(
+            'adobe-creative-cloud'
+            'android-file-transfer'
+            'atom'
+            'docker'
+            'firefox'
+            'flycut'
+            'google-backup-and-sync'
+            'google-chrome'
+            'iterm2'
+            'itsycal'
+            'java'
+            'macpass'
+            'microsoft-teams'
+            'postman'
+            'r-app'
+            'rstudio'
+            'safari-technology-preview'
+            'spotify'
+            'sublime-text'
+            'virtualbox'
+            'visual-studio-code'
+            'vlc'
+            'youtube-to-mp3'
+        )
+
+    # loop through the formulas, install missing ones
+    for t in ${casks[@]}; do
+        #echo "checking if $t formula is installed..."
+        brew ls --versions $t > /dev/null
+        formula_installed=$?
+        #echo "$t installed: $formula_installed"
+        if [ ! "$formula_installed" -eq 0 ]; then
+            echo "Installing '$t' cask..."
+            brew cask install $t
+        fi
+    done 
+}
+
+#
+#  Installs NPM packages.
+#
+function npm_install {
+    packages=(
+        'eslint'
+        'eslint-config-jquery'
+        'generator-code'
+        'gulp'
+        'gulp-cli'
+        'vsce'
+        'yo'
+    )
+
+    # loop through the formulas, install missing ones
+    for t in ${packages[@]}; do
+        npm install -g $t
+    done
+}
+
+
+function app_store_install {
+    # list of apps
+    apps=(
+        '411643860'  # DaisyDisk
+        '497799835'  # Xcode
+        '441258766'  # Magnet
+        '1295203466' # Microsoft Remote Desktop 10.0
+    )
+
+    # loop through the formulas, install missing ones
+    for t in ${apps[@]}; do
+       mas install $t
+    done
+
+    # Upgrade all applications
+    mas upgrade
+}
+
+
+function extensions_install {
+    # Atom extensions
+    atom=(
+        'busy-signal'
+        'docblockr'
+        'file-icons'
+        'intentions'
+        'language-blade'
+        'language-dotenv'
+        'linter'
+        'linter-eslint'
+        'linter-markdown'
+        'linter-php'
+        'linter-phpcs'
+        'linter-phpmd'
+        'linter-ui-default'
+        'monokai'
+    )
+
+    # Visual Studio Code extensions
+    vscode=(
+        '77qingliu.sas-syntax'
+        'DavidAnson.vscode-markdownlint'
+        'dbaeumer.vscode-eslint'
+        'ecodes.vscode-phpmd'
+        'ikappas.phpcs'
+        'mikestead.dotenv'
+        'ms-python.python'
+        'ms-vscode.csharp'
+        'neilbrayfield.php-docblocker'
+        'onecentlin.laravel-blade'
+        'PeterJausovec.vscode-docker'
+    )
+
+    # Install Atom extensions
+    for t in ${atom[@]}; do
+       apm install $t
+    done
+
+    # Install Visual Studio Code extensions
+    for t in ${vscode[@]}; do
+       code --install-extension $t
+    done
+}
+
+
+
 function brew_install {
     # make sure brew installed
     which brew > /dev/null
@@ -41,7 +191,11 @@ function brew_install {
     fi
 
     # list of formulas to install
-    formulas=(neofetch tree webp sdl2)
+    formulas=(cask neofetch tree webp mame mas ntfs-3g node@8)
+
+    # Needed taps for casks (are they still needed?)
+    brew tap caskroom/cask
+    brew tap caskroom/versions
    
     # loop through the formulas, install missing ones 
     for t in ${formulas[@]}; do
@@ -54,6 +208,12 @@ function brew_install {
             brew install $t
         fi
     done
+
+    # Install Homebrew Casks, NPM packages, and Mac App Store apps
+    install_casks
+    npm_install
+    app_store_install
+    extensions_install
 
     # open Neofetch
     neofetch
@@ -132,41 +292,43 @@ function filestokeep {
 	echo '~/sites/certs/'
 }
 
-function musthaveapps {
+function install_apps {
         echo 'Adobe Creative Cloud - https://adobe.com'
+        echo 'Atom                 - https://atom.io/'
         echo 'Backup & Sync        - https://www.google.com/drive/download/backup-and-sync/'
         echo 'Brother MFC-9130CW   - https://support.brother.com/g/b/producttop.aspx?c=us&lang=en&prod=mfc9130cw_us'
         echo 'Citrix Workspace     - https://toolbox.its.unc.edu'
         echo 'DaisyDisk            - https://itunes.apple.com/us/app/daisydisk/id411643860?mt=12'
-        echo 'Docker - https://www.docker.com/'
-        echo 'Flycut - https://github.com/TermiT/Flycut/releases'
-        echo 'iTerm2 - https://iterm2.com/'
-        echo 'Itsycal -              https://www.mowglii.com/itsycal/'
+        echo 'Docker               - https://www.docker.com/'
+        echo 'Flycut               - https://github.com/TermiT/Flycut/releases'
+        echo 'iTerm2               - https://iterm2.com/'
+        echo 'Itsycal              - https://www.mowglii.com/itsycal/'
         echo 'JasperSoft Studio    - https://support.tibco.com/s/'
-        echo 'MacPass - https://macpassapp.org/'
-        echo 'Magnet - https://itunes.apple.com/us/app/magnet/id441258766?mt=12'
+        echo 'MacPass              - https://macpassapp.org/'
+        echo 'Magnet               - https://itunes.apple.com/us/app/magnet/id441258766?mt=12'
         echo 'MS Remote Desktop 10 - https://itunes.apple.com/us/app/microsoft-remote-desktop-10/id1295203466?mt=12'
-        echo 'MS Teams - https://teams.microsoft.com'
+        echo 'MS Teams             - https://teams.microsoft.com'
         echo 'Oracle SQL Developer - https://www.oracle.com/database/technologies/appdev/sql-developer.html'
         echo 'Postman              - https://www.getpostman.com/'
         echo 'SAS University       - https://www.sas.com/en_us/software/university-edition.html'
         echo 'VirtualBox           - https://www.virtualbox.org/'
         echo 'VLC                  - https://www.videolan.org/'
-        echo 'VS Code - https://code.visualstudio.com/'
+        echo 'VS Code              - https://code.visualstudio.com/'
         echo 'Xcode                - https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12'
 }
 
 
 function mycommands {
-	echo 'apacheconf  - edit the configuration file for Apache'
-	echo 'apachelog   - shows the error log for local apache instance'
-	echo 'edithosts   - opens the virtual hosts config file for editing'
-	echo 'filestokeep - lists files and folders to keep before reinstalling macOS' 
-	echo 'gitsync     - merges a branch with current one, pushes the changes without leaving the current branch'
-        echo 'mkcd        - creates and changes to a new folder simultaneously'
-        echo 'oc-rsh      - opens an SSH session into the pod of an application (if max pods = 1)'
-	echo 'phpconf     - edit the configuration file for the current version of PHP'
-	echo 'vsprojects  - changes to Visual Studio 2015 Projects folder on Windows 10'
+	echo 'apacheconf   - edit the configuration file for Apache'
+	echo 'apachelog    - shows the error log for local apache instance'
+	echo 'edithosts    - opens the virtual hosts config file for editing'
+	echo 'filestokeep  - lists files and folders to keep before reinstalling macOS' 
+	echo 'gitsync      - merges a branch with current one, pushes the changes without leaving the current branch'
+        echo 'install_apps - lists all apps used for productivity'
+        echo 'mkcd         - creates and changes to a new folder simultaneously'
+        echo 'oc-rsh       - opens an SSH session into the pod of an application (if max pods = 1)'
+	echo 'phpconf      - edit the configuration file for the current version of PHP'
+	echo 'vsprojects   - changes to Visual Studio 2015 Projects folder on Windows 10'
 }
 
 function edithosts {
