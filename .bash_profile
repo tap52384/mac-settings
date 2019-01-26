@@ -56,9 +56,11 @@ function install_casks {
             'r-app'
             'rstudio'
             'safari-technology-preview'
+            'sequel-pro'
             'spotify'
             'sublime-text'
             'virtualbox'
+            'virtualbox-extension-pack'
             'visual-studio-code'
             'vlc'
             'youtube-to-mp3'
@@ -82,6 +84,7 @@ function install_casks {
 #
 function npm_install {
     packages=(
+        '@google/clasp'
         'eslint'
         'eslint-config-jquery'
         'generator-code'
@@ -111,6 +114,9 @@ function app_store_install {
         '462058435'  # Microsoft Excel
         '985367838'  # Microsoft Outlook
         '682658836'  # Garageband
+        '926036361'  # LastPass Password Manager
+        '507257563'  # Sip
+        '823766827'  # Microsoft OneDrive
     )
 
     # loop through the formulas, install missing ones
@@ -169,6 +175,22 @@ function extensions_install {
 }
 
 
+function add_dock_items {
+    apps=(
+        "Visual Studio Code.app"
+        'Spotify.app'
+        'Microsoft Teams.app'
+        'Microsoft Remote Desktop.app'
+        'Google Chrome.app'
+        'Microsoft Outlook.app'
+    )
+
+    # Add items to dock
+    for t in "${apps[@]}"; do
+       dockutil --add "/Applications/$t"
+    done
+}
+
 
 function brew_install {
     # make sure brew installed
@@ -197,7 +219,22 @@ function brew_install {
     fi
 
     # list of formulas to install
-    formulas=(cask neofetch tree webp mame mas ntfs-3g node@8)
+    formulas=(
+        cask
+        neofetch
+        tree
+        webp
+        mame
+        mas
+        ntfs-3g
+        node@8
+        bash
+        brew-cask-completion
+        tmux
+        # Command line tool for managing dock items
+        # https://github.com/kcrawford/dockutil
+        dockutil
+    )
 
     # Needed taps for casks (are they still needed?)
     brew tap caskroom/cask
