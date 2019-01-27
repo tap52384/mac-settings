@@ -231,6 +231,7 @@ function brew_install {
         bash
         brew-cask-completion
         tmux
+        git
         # Command line tool for managing dock items
         # https://github.com/kcrawford/dockutil
         dockutil
