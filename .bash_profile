@@ -37,6 +37,9 @@ function install_casks {
         # Xcode Command Line Tools
         xcode-select --install
 
+        # Agree to the Xcode license
+        sudo xcodebuild -license accept
+
         # Install apps via Homebrew Cask
         casks=(
             'adobe-creative-cloud'
@@ -83,6 +86,9 @@ function install_casks {
 #  Installs NPM packages.
 #
 function npm_install {
+    # Install Node v8 via NVM
+    nvm install 8 
+
     packages=(
         '@google/clasp'
         'eslint'
@@ -226,8 +232,10 @@ function brew_install {
         webp
         mame
         mas
+        # Node Version Manager
+        # https://github.com/creationix/nvm
+        nvm
         ntfs-3g
-        node@8
         bash
         brew-cask-completion
         tmux
@@ -258,6 +266,7 @@ function brew_install {
     npm_install
     app_store_install
     extensions_install
+    add_dock_items
 
     # open Neofetch
     neofetch
@@ -426,3 +435,8 @@ export HOMEBREW_GITHUB_API_TOKEN=""
 
 # install Homebrew and some formulas, then run neofetch
 brew_install
+
+# Allows you to use NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
