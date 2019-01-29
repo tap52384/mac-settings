@@ -86,7 +86,10 @@ function install_casks {
 #  Installs NPM packages.
 #
 function npm_install {
-    # Install Node v8 via NVM
+    # Install Node v8 via NVM using the official method
+    # Node Version Manager
+    # https://github.com/creationix/nvm
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
     nvm install 8 
 
     packages=(
@@ -232,9 +235,6 @@ function brew_install {
         webp
         mame
         mas
-        # Node Version Manager
-        # https://github.com/creationix/nvm
-        nvm
         ntfs-3g
         bash
         brew-cask-completion
