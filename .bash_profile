@@ -24,7 +24,8 @@ function update_formulas {
     brew missing
     # Update all Atom packages
     apm upgrade -c false
-
+    # Update all Mac App Store apps
+    mas upgrade
 }
 
 function install_casks {
