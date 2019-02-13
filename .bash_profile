@@ -19,6 +19,7 @@ function mkcd {
 function update_formulas {
     brew update
     brew upgrade
+    brew cask upgrade
     brew cleanup -s
     brew doctor
     brew missing

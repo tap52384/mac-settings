@@ -8,3 +8,5 @@
         interactive = auto
         status = auto
 	ui = true
+[user]
+	name = Z. Patrick Lewis

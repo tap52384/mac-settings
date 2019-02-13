@@ -2,12 +2,12 @@
 <AnyConnectPreferences>
 <DefaultUser>zplewis</DefaultUser>
 <DefaultSecondUser></DefaultSecondUser>
-<ClientCertificateThumbprint>12ED9BC8FDF6DCD9B4146DBB70F94088948AEC94</ClientCertificateThumbprint>
+<ClientCertificateThumbprint>C37566C491BCFA02B6D481680F6BAA17D98ECFF9</ClientCertificateThumbprint>
 <MultipleClientCertificateThumbprints></MultipleClientCertificateThumbprints>
 <ServerCertificateThumbprint></ServerCertificateThumbprint>
 <DefaultHostName>vpn.unc.edu</DefaultHostName>
 <DefaultHostAddress></DefaultHostAddress>
-<DefaultGroup>ITSAdmin</DefaultGroup>
+<DefaultGroup>ERDS-Dev</DefaultGroup>
 <ProxyHost></ProxyHost>
 <ProxyPort></ProxyPort>
 <SDITokenType>none</SDITokenType>
