@@ -232,6 +232,7 @@ function brew_install {
     # list of formulas to install
     formulas=(
         cask
+        ctags
         neofetch
         tree
         webp
@@ -421,6 +422,9 @@ ORACLE_HOME=/usr/local/lib
 
 # Add Visual Studio Code (code)
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+# Add Python 2.7 wheel to PATH
+# export PATH="~/Library/Python/2.7/bin:$PATH"
 
 # Add Python 3.6 via Homebrew
 export PATH="/usr/local/bin/python3:$PATH"
