@@ -81,7 +81,19 @@ function install_casks {
             echo "Installing '$t' cask..."
             brew cask install $t
         fi
-    done 
+    done
+
+    # Install PHP Composer
+    which composer > /dev/null
+    COMPOSER_INSTALLED=$?
+
+    if [ ! "$COMPOSER_INSTALLED" -eq 0 ]; then
+        echo "Composer not installed; downloading and installing now..."
+        curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+        chmod +x /usr/local/bin/composer
+    else
+        echo "Composer is already installed."
+    fi
 }
 
 #
@@ -92,7 +104,7 @@ function npm_install {
     # Node Version Manager
     # https://github.com/creationix/nvm
     curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-    nvm install 8 
+    nvm install 8
 
     packages=(
         '@google/clasp'
@@ -253,8 +265,8 @@ function brew_install {
     # Needed taps for casks (are they still needed?)
     brew tap caskroom/cask
     brew tap caskroom/versions
-   
-    # loop through the formulas, install missing ones 
+
+    # loop through the formulas, install missing ones
     for t in ${formulas[@]}; do
         #echo "checking if $t formula is installed..."
         brew ls --versions $t > /dev/null
@@ -380,7 +392,7 @@ function mycommands {
 	echo 'apacheconf   - edit the configuration file for Apache'
 	echo 'apachelog    - shows the error log for local apache instance'
 	echo 'edithosts    - opens the virtual hosts config file for editing'
-	echo 'filestokeep  - lists files and folders to keep before reinstalling macOS' 
+	echo 'filestokeep  - lists files and folders to keep before reinstalling macOS'
 	echo 'gitsync      - merges a branch with current one, pushes the changes without leaving the current branch'
         echo 'install_apps - lists all apps used for productivity'
         echo 'mkcd         - creates and changes to a new folder simultaneously'
