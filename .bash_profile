@@ -233,7 +233,9 @@ function brew_install {
     formulas=(
         cask
         ctags
+        libiconv
         neofetch
+        openldap
         tree
         webp
         mame

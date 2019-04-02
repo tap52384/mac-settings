@@ -10,3 +10,6 @@
 	ui = true
 [user]
 	name = Z. Patrick Lewis
+        email = patrick_lewis@unc.edu
+[branch]
+	autosetuprebase = always
