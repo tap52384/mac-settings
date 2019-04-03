@@ -7,7 +7,7 @@
 <ServerCertificateThumbprint></ServerCertificateThumbprint>
 <DefaultHostName>vpn.unc.edu</DefaultHostName>
 <DefaultHostAddress></DefaultHostAddress>
-<DefaultGroup>ERP-Dev</DefaultGroup>
+<DefaultGroup>ERDS-Dev</DefaultGroup>
 <ProxyHost></ProxyHost>
 <ProxyPort></ProxyPort>
 <SDITokenType>none</SDITokenType>

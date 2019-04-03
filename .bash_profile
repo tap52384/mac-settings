@@ -14,6 +14,20 @@ function mkcd {
   fi
 }
 
+function install_composer {
+    # Install PHP Composer
+    which composer > /dev/null
+    COMPOSER_INSTALLED=$?
+
+    if [ ! "$COMPOSER_INSTALLED" -eq 0 ]; then
+        echo "Composer not installed; downloading and installing now..."
+        curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+        chmod +x /usr/local/bin/composer
+    else
+        echo "Composer is already installed."
+    fi
+}
+
 #
 #   Update all Homebrew, Atom, and VS Code packages
 function update_formulas {
@@ -27,6 +41,9 @@ function update_formulas {
     apm upgrade -c false
     # Update all Mac App Store apps
     mas upgrade
+    # Install and Update PHP Composer
+    install_composer
+    composer selfupdate
 }
 
 function install_casks {
@@ -257,6 +274,7 @@ function brew_install {
         brew-cask-completion
         tmux
         git
+        openshift-cli
         # Command line tool for managing dock items
         # https://github.com/kcrawford/dockutil
         dockutil
