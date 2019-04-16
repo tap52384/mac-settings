@@ -441,6 +441,11 @@ function vsprojects {
 	cd "/mnt/c/Users/Username/Documents/Visual\ Studio\ 2015/Projects"
 }
 
+# include settings from .bashrc
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi
+
 export PATH="~/.composer/vendor/bin:$PATH"
 
 # Setting PATH for Python 2.7
