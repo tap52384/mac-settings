@@ -15,5 +15,6 @@
     "python.linting.pylintPath": "/usr/local/bin/pylint",
     "git.autofetch": true,
     "editor.detectIndentation": false,
-    "liveshare.audio.joinCallBehavior": "accept"
+    "liveshare.audio.joinCallBehavior": "accept",
+    "editor.minimap.enabled": false
 }

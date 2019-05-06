@@ -62,7 +62,6 @@ function install_casks {
         # Install apps via Homebrew Cask
         casks=(
             'adobe-creative-cloud'
-            'android-file-transfer'
             'atom'
             'docker'
             'firefox'
@@ -84,6 +83,7 @@ function install_casks {
             'virtualbox'
             'virtualbox-extension-pack'
             'visual-studio-code'
+            'visual-studio-code-insiders'
             'vlc'
             'youtube-to-mp3'
         )
