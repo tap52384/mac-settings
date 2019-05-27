@@ -16,5 +16,7 @@
     "git.autofetch": true,
     "editor.detectIndentation": false,
     "liveshare.audio.joinCallBehavior": "accept",
-    "editor.minimap.enabled": false
+    "editor.minimap.enabled": false,
+    "terminal.integrated.rendererType": "dom",
+    "editor.renderControlCharacters": true
 }
