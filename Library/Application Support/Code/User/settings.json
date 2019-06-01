@@ -14,9 +14,9 @@
     "editor.largeFileOptimizations": false,
     "python.linting.pylintPath": "/usr/local/bin/pylint",
     "git.autofetch": true,
-    "editor.detectIndentation": false,
     "liveshare.audio.joinCallBehavior": "accept",
     "editor.minimap.enabled": false,
     "terminal.integrated.rendererType": "dom",
-    "editor.renderControlCharacters": true
+    "editor.renderControlCharacters": true,
+    "editor.detectIndentation": false
 }
