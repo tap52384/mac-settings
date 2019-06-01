@@ -2,7 +2,7 @@
 <AnyConnectPreferences>
 <DefaultUser>zplewis</DefaultUser>
 <DefaultSecondUser></DefaultSecondUser>
-<ClientCertificateThumbprint>D957FF9535ED5AD1064D91E0C5E6C35508B62201</ClientCertificateThumbprint>
+<ClientCertificateThumbprint>7E2CB8630F4708F6171DFF42B7400B334037B419</ClientCertificateThumbprint>
 <MultipleClientCertificateThumbprints></MultipleClientCertificateThumbprints>
 <ServerCertificateThumbprint></ServerCertificateThumbprint>
 <DefaultHostName>vpn.unc.edu</DefaultHostName>

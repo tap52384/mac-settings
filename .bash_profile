@@ -93,7 +93,7 @@ function install_casks {
             'visual-studio-code-insiders'
             'vlc'
             'youtube-to-mp3'
-            'zoom'
+            'zoomus'
         )
 
     # loop through the formulas, install missing ones
@@ -163,7 +163,6 @@ function app_store_install {
         '985367838'  # Microsoft Outlook
         '682658836'  # Garageband
         '926036361'  # LastPass Password Manager
-        '507257563'  # Sip
         '823766827'  # Microsoft OneDrive
     )
 
@@ -226,11 +225,12 @@ function extensions_install {
 function add_dock_items {
     apps=(
         "Visual Studio Code.app"
-        'Spotify.app'
         'Microsoft Teams.app'
         'Microsoft Remote Desktop.app'
-        'Google Chrome.app'
         'Microsoft Outlook.app'
+        'Brave Browser.app'
+        'LastPass.app'
+        'iTerm.app'
     )
 
     # Add items to dock
@@ -278,6 +278,7 @@ function brew_install {
         mame
         mas
         ntfs-3g
+        php
         bash
         brew-cask-completion
         tmux
