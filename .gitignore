@@ -12,6 +12,9 @@
 !.gitconfig
 !.gitignore
 !.vimrc
+!.zlogin
+!.zshrc
+!.zshenv
 # etc...
 
 # ...even if they are in subdirectories

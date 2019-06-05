@@ -2,8 +2,8 @@
     "editor.rulers":[
         80, 100
     ],
-    "phpcs.executablePath": "/Users/patricklewis/.composer/vendor/squizlabs/php_codesniffer/bin/phpcs",
-    "phpmd.command": "/Users/patricklewis/.composer/vendor/phpmd/phpmd/src/bin/phpmd",
+    "phpcs.executablePath": "/Users/patrick/.composer/vendor/squizlabs/php_codesniffer/bin/phpcs",
+    "phpmd.command": "/Users/patrick/.composer/vendor/phpmd/phpmd/src/bin/phpmd",
     "phpcs.standard": "PSR2",
     "files.trimTrailingWhitespace": true,
     "python.pythonPath": "/usr/local/bin/python3",
