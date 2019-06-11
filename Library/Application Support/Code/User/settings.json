@@ -18,5 +18,8 @@
     "editor.minimap.enabled": false,
     "terminal.integrated.rendererType": "dom",
     "editor.renderControlCharacters": true,
-    "editor.detectIndentation": false
+    "editor.detectIndentation": false,
+    "terminal.integrated.scrollback": 10000,
+    "files.trimFinalNewlines": true,
+    "files.insertFinalNewline": true
 }

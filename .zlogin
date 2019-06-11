@@ -1,3 +1,35 @@
+function install_composer {
+    # Install PHP Composer
+    which composer > /dev/null
+    COMPOSER_INSTALLED=$?
+
+    if [ ! "$COMPOSER_INSTALLED" -eq 0 ]; then
+        echo "Composer not installed; downloading and installing now..."
+        curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+        chmod +x /usr/local/bin/composer
+    else
+        echo "Composer is already installed."
+    fi
+}
+
+#
+#   Update all Homebrew, Atom, and VS Code packages
+function update_formulas {
+    brew update
+    brew upgrade
+    brew cask upgrade
+    brew cleanup -s
+    brew doctor
+    brew missing
+    # Update all Atom packages
+    apm upgrade -c false
+    # Update all Mac App Store apps
+    mas upgrade
+    # Install and Update PHP Composer
+    install_composer
+    composer selfupdate
+}
+
 function oc-rsh {
     if [[ -z "$1" ]]; then
         echo "OpenShift pod name required."
@@ -201,7 +233,6 @@ function install_casks {
             'rstudio'
             'safari-technology-preview'
             'sequel-pro'
-            'sip'
             'soapui'
             'spotify'
             'sublime-text'

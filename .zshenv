@@ -7,6 +7,9 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 # Add Python 3.6 via Homebrew
 export PATH="/usr/local/bin/python3:$PATH"
 
+# Add Homebrew's "sbin" to PATH
+export PATH="/usr/local/sbin:$PATH"
+
 # Allows you to use NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

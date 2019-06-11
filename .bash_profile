@@ -82,7 +82,6 @@ function install_casks {
             'rstudio'
             'safari-technology-preview'
             'sequel-pro'
-            'sip'
             'soapui'
             'spotify'
             'sublime-text'
