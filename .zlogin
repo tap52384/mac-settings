@@ -314,6 +314,8 @@ function brew_install {
         mas
         ntfs-3g
         openshift-cli
+        # Pandoc - a universal document converter (https://pandoc.org)
+        pandoc-citeproc
         php
         tmux
         tree

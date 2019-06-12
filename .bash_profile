@@ -277,6 +277,7 @@ function brew_install {
         mame
         mas
         ntfs-3g
+        pandoc-citeproc
         php
         bash
         brew-cask-completion
