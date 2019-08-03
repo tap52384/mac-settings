@@ -229,10 +229,8 @@ function install_casks {
             'microsoft-teams'
             'netbeans-php'
             'postman'
-            'r-app'
-            'rstudio'
-            'safari-technology-preview'
             'sequel-pro'
+            'slack'
             'soapui'
             'spotify'
             'sublime-text'
@@ -321,6 +319,7 @@ function brew_install {
         tree
         webp
         zsh
+        zsh-syntax-highlighting
     )
 
     # Needed taps for casks (are they still needed?)

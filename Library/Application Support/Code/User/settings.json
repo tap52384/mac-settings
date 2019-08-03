@@ -21,5 +21,10 @@
     "editor.detectIndentation": false,
     "terminal.integrated.scrollback": 10000,
     "files.trimFinalNewlines": true,
-    "files.insertFinalNewline": true
+    "files.insertFinalNewline": true,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.jediEnabled": false,
+    "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.fontFamily": "MesloLGS NF"
 }
