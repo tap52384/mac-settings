@@ -58,7 +58,7 @@ function gitsync {
             echo "usage: gitsync [destination]"
             exit() { return 1; }
         else
-            echo Merging "$1" branch into "$current" branch...
+            echo Merging "$current" branch into "$1" branch...
 	    git checkout $1
             git merge $current
 	    git push
