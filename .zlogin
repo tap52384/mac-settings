@@ -43,7 +43,7 @@ function oc-rsh {
     fi
 }
 
-# Merges two or more branches and pushes the changes to the repo.
+# Merges the current branch into the specified branch and then switches back. Does a "git pull" before merging.
 # TODO: use a loop so an infinite number of branches can be synced to the source branch
 # TODO: make it so that no parameters shows help text
 # TODO: make sure at least two branches are specified or show an error message
@@ -60,7 +60,8 @@ function gitsync {
         else
             echo Merging "$current" branch into "$1" branch...
 	    git checkout $1
-            git merge $current
+        git pull
+        git merge $current
 	    git push
 	    git checkout $current
         fi
