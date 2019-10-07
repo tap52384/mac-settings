@@ -59,11 +59,14 @@ function gitsync {
             exit() { return 1; }
         else
             echo Merging "$current" branch into "$1" branch...
-	    git checkout $1
-        git pull
-        git merge $current
-	    git push
-	    git checkout $current
+            echo Switching to "$1" branch...
+	        git checkout $1
+            echo Pulling latest changes into "$1" branch before merging...
+            git pull
+            echo Merging "$current" branch into "$1" branch...
+            git merge $current
+	        git push
+	        git checkout $current
         fi
 }
 
