@@ -315,6 +315,8 @@ function brew_install {
         # Pandoc - a universal document converter (https://pandoc.org)
         pandoc-citeproc
         php
+        podman
+        powershell
         tmux
         tree
         webp
@@ -349,6 +351,10 @@ function brew_install {
     neofetch
 }
 
+
+function myip {
+    echo $(ifconfig | grep -v 127.0.0.1 | grep -v ::1 | grep -i "broadcast" | grep "inet")
+}
 
 # install Homebrew and some formulas, then run neofetch
 brew_install

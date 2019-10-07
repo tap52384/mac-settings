@@ -26,5 +26,11 @@
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "python.jediEnabled": false,
     "terminal.integrated.copyOnSelection": true,
-    "terminal.integrated.fontFamily": "MesloLGS NF"
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "[oracle]": {
+
+    },
+    "files.associations": {
+        "*.sql": "sql"
+    }
 }

@@ -10,6 +10,9 @@ export PATH="/usr/local/bin/python3:$PATH"
 # Add Homebrew's "sbin" to PATH
 export PATH="/usr/local/sbin:$PATH"
 
+# Add Composer
+export PATH="~/.composer/vendor/bin:$PATH"
+
 # Allows you to use NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
