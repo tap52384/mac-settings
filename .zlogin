@@ -24,7 +24,7 @@ function update_formulas {
     # Update all Atom packages
     apm upgrade -c false
     # Update all Mac App Store apps
-    mas upgrade
+    # mas upgrade
     # Install and Update PHP Composer
     install_composer
     composer selfupdate
@@ -167,11 +167,11 @@ function app_store_install {
 
     # loop through the formulas, install missing ones
     for t in ${apps[@]}; do
-       mas install $t
+       # mas install $t
     done
 
     # Upgrade all applications
-    mas upgrade
+    # mas upgrade
 }
 
 #
@@ -309,11 +309,11 @@ function brew_install {
         # https://github.com/kcrawford/dockutil
         dockutil
         git
+        lastpass-cli
         libiconv
         neofetch
         openldap
         mame
-        mas
         ntfs-3g
         openshift-cli
         # Pandoc - a universal document converter (https://pandoc.org)
@@ -347,7 +347,7 @@ function brew_install {
     # Install Homebrew Casks, NPM packages, and Mac App Store apps
     install_casks
     npm_install
-    app_store_install
+    # app_store_install
     extensions_install
     add_dock_items
 
