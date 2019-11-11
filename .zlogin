@@ -28,6 +28,7 @@ function update_formulas {
     # Install and Update PHP Composer
     install_composer
     composer selfupdate
+    docker system prune -f
 }
 
 function oc-rsh {
