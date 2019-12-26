@@ -32,5 +32,6 @@
     },
     "files.associations": {
         "*.sql": "sql"
-    }
+    },
+    "diffEditor.ignoreTrimWhitespace": false
 }

@@ -179,11 +179,12 @@ function app_store_install {
 #  Installs NPM packages.
 #
 function npm_install {
-    # Install Node v8 via NVM using the official method
+    # Install Node via NVM using the official method
+    # Best method since it does not require root!
     # Node Version Manager
-    # https://github.com/creationix/nvm
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-    nvm install 8
+    # https://github.com/nvm-sh/nvm
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+    nvm install node
 
     packages=(
         '@google/clasp'
@@ -324,6 +325,8 @@ function brew_install {
         tree
         webp
         zsh
+        zsh-autosuggestions
+        zsh-completions
         zsh-syntax-highlighting
     )
 
@@ -346,7 +349,6 @@ function brew_install {
     # Install Homebrew Casks, NPM packages, and Mac App Store apps
     install_casks
     npm_install
-    # app_store_install
     extensions_install
     add_dock_items
 
