@@ -139,14 +139,24 @@ function extensions_install {
     )
 
     # Install Atom extensions
-    for t in ${atom[@]}; do
-       apm install $t
-    done
+    which apm > /dev/null
+    ATOM_INSTALLED=$?
+ 
+    if [ "$ATOM_INSTALLED" -eq 0 ]; then
+        for t in ${atom[@]}; do
+            apm install $t
+        done
+    fi;
 
     # Install Visual Studio Code extensions
-    for t in ${vscode[@]}; do
-       code --install-extension $t
-    done
+    which code > /dev/null
+    VSCODE_INSTALLED=$?
+    
+    if [ "$VSCODE_INSTALLED" -eq 0 ]; then
+        for t in ${vscode[@]}; do
+            code --install-extension $t
+        done
+    fi;
 }
 
 function app_store_install {
@@ -168,11 +178,11 @@ function app_store_install {
 
     # loop through the formulas, install missing ones
     for t in ${apps[@]}; do
-       # mas install $t
+       mas install $t
     done
 
     # Upgrade all applications
-    # mas upgrade
+    mas upgrade
 }
 
 #
@@ -219,7 +229,7 @@ function install_casks {
         # Install apps via Homebrew Cask
         casks=(
             'adobe-creative-cloud'
-            'atom'
+            # 'atom'
             'brave-browser'
             'docker'
             'firefox'
@@ -235,7 +245,7 @@ function install_casks {
             'netbeans-php'
             'postman'
             'sequel-pro'
-            'slack'
+            # 'slack'
             'soapui'
             'spotify'
             'sublime-text'
@@ -261,16 +271,7 @@ function install_casks {
     done
 
     # Install PHP Composer
-    which composer > /dev/null
-    COMPOSER_INSTALLED=$?
-
-    if [ ! "$COMPOSER_INSTALLED" -eq 0 ]; then
-        echo "Composer not installed; downloading and installing now..."
-        curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-        chmod +x /usr/local/bin/composer
-    else
-        echo "Composer is already installed."
-    fi
+    install_composer
 }
 
 function brew_install {
@@ -301,7 +302,7 @@ function brew_install {
 
     # list of formulas to install
     formulas=(
-        bash
+        # bash
         brew-cask-completion
         cask
         ctags
@@ -312,13 +313,13 @@ function brew_install {
         lastpass-cli
         libiconv
         neofetch
-        openldap
+        # openldap
         mame
         ntfs-3g
         openshift-cli
         # Pandoc - a universal document converter (https://pandoc.org)
         pandoc-citeproc
-        php
+        # php
         podman
         powershell
         tmux
