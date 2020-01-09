@@ -12,6 +12,9 @@ In a macOS terminal:
 cd ~
 # may have to install command-line tools
 git init
+# Agree to the Xcode/iOS license if you haven't already
+xcode-select --install
+sudo xcodebuild -license accept
 # Links the current directory to this repo
 git remote add origin https://github.com/tap52384/mac-settings.git
 # Checks out the "dev" branch and sets the upstream to "origin/dev"
