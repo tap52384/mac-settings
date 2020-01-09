@@ -8,6 +8,7 @@ more for macOS
 In a macOS terminal:
 
 ```bash
+# Instructions inspired by https://stackoverflow.com/a/36084134/1620794
 cd ~
 # may have to install command-line tools
 git init
