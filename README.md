@@ -3,7 +3,21 @@
 bash_profile, visual studio code user settings, terminal customizations, and
 more for macOS
 
-## Method
+## Usage
+
+In a macOS terminal:
+
+```bash
+cd ~
+# may have to install command-line tools
+git init
+# Links the current directory to this repo
+git remote add origin https://github.com/tap52384/mac-settings.git
+# Checks out the "dev" branch and sets the upstream to "origin/dev"
+git checkout origin/dev -t
+```
+
+## Purpose
 
 This code has several purposes:
 
