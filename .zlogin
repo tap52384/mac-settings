@@ -22,13 +22,21 @@ function update_formulas {
     brew doctor
     brew missing
     # Update all Atom packages
-    apm upgrade -c false
+    # apm upgrade -c false
     # Update all Mac App Store apps
     # mas upgrade
     # Install and Update PHP Composer
     install_composer
     composer selfupdate
-    docker system prune -f
+
+    which docker > /dev/null
+    DOCKER_INSTALLED=$?
+
+    if [ "$DOCKER_INSTALLED" -eq 0 ]; then
+        docker system prune -f
+    else
+        echo "Docker is not installed; system prune failed."
+    fi
 }
 
 function oc-rsh {
@@ -91,17 +99,37 @@ function add_dock_items {
     apps=(
         "Visual Studio Code.app"
         'Microsoft Teams.app'
-        'Microsoft Remote Desktop.app'
+        # 'Microsoft Remote Desktop.app'
         'Microsoft Outlook.app'
         'Brave Browser.app'
         'LastPass.app'
         'iTerm.app'
+        'Google Chrome.app'
     )
 
     # Add items to dock
     for t in "${apps[@]}"; do
        dockutil --add "/Applications/$t"
     done
+
+    apps=(
+        'Reminders'
+        'Mail'
+        'Launchpad'
+        'News'
+        'Podcasts'
+    )
+
+    # Remove items from dock
+    for t in "${apps[@]}"; do
+        dockutil --remove "$t"
+    done
+
+    dockutil --move 'Brave Browser' --after 'Safari'
+    dockutil --move 'Google Chrome' --after 'Brave Browser'
+    dockutil --move 'iTerm' --after 'Notes'
+    dockutil --move 'Visual Studio Code' --after 'Notes'
+    dockutil --move 'Microsoft Outlook' --after 'Google Chrome'
 }
 
 function extensions_install {
@@ -126,16 +154,9 @@ function extensions_install {
     # Visual Studio Code extensions
     vscode=(
         '77qingliu.sas-syntax'
-        'DavidAnson.vscode-markdownlint'
-        'dbaeumer.vscode-eslint'
-        'ecodes.vscode-phpmd'
-        'ikappas.phpcs'
-        'mikestead.dotenv'
+        'ms-azuretools.vscode-docker'
         'ms-python.python'
-        'ms-vscode.csharp'
-        'neilbrayfield.php-docblocker'
-        'onecentlin.laravel-blade'
-        'PeterJausovec.vscode-docker'
+        'ms-vscode-remote.remote-containers'
     )
 
     # Install Atom extensions
@@ -194,6 +215,9 @@ function npm_install {
     # Node Version Manager
     # https://github.com/nvm-sh/nvm
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
     nvm install node
 
     packages=(
@@ -203,6 +227,7 @@ function npm_install {
         'generator-code'
         'gulp'
         'gulp-cli'
+        'inquirer'
         'vsce'
         'yo'
     )
@@ -213,8 +238,17 @@ function npm_install {
     done
 }
 
+function install_oh_my_zsh {
+    # Install Oh My Zsh - https://github.com/ohmyzsh/ohmyzsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    # Install Powerlevel10k theme for Oh My Zsh
+    # https://github.com/romkatv/powerlevel10k#installation
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+    echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>! ~/.zshrc
+}
+
 function install_casks {
-    # Install Homebrew Cask
+        # Install Homebrew Cask
         update_formulas
 
         # Ask for the administrator password
@@ -245,7 +279,6 @@ function install_casks {
             'netbeans-php'
             'postman'
             'sequel-pro'
-            # 'slack'
             'soapui'
             'spotify'
             'sublime-text'
@@ -267,6 +300,8 @@ function install_casks {
         if [ ! "$formula_installed" -eq 0 ]; then
             echo "Installing '$t' cask..."
             brew cask install $t
+        else
+            echo "Cask '$t' is already installed; skipping..."
         fi
     done
 
@@ -312,6 +347,8 @@ function brew_install {
         git
         lastpass-cli
         libiconv
+        # mac app store - https://github.com/mas-cli/mas
+        mas
         neofetch
         # openldap
         mame
@@ -332,8 +369,8 @@ function brew_install {
     )
 
     # Needed taps for casks (are they still needed?)
-    brew tap caskroom/cask
-    brew tap caskroom/versions
+    brew tap homebrew/cask-cask
+    brew tap homebrew/cask-versions
 
     # loop through the formulas, install missing ones
     for t in ${formulas[@]}; do
@@ -352,6 +389,7 @@ function brew_install {
     npm_install
     extensions_install
     add_dock_items
+    install_oh_my_zsh
 
     # open Neofetch
     neofetch
