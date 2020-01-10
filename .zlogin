@@ -277,6 +277,8 @@ function install_casks {
             'macpass'
             'microsoft-teams'
             'netbeans-php'
+            'podman'
+            'powershell'
             'postman'
             'sequel-pro'
             'soapui'
@@ -350,15 +352,12 @@ function brew_install {
         # mac app store - https://github.com/mas-cli/mas
         mas
         neofetch
-        # openldap
         mame
-        ntfs-3g
+        # ntfs-3g
         openshift-cli
         # Pandoc - a universal document converter (https://pandoc.org)
         pandoc-citeproc
-        # php
-        podman
-        powershell
+        source-to-image
         tmux
         tree
         webp
@@ -367,10 +366,6 @@ function brew_install {
         zsh-completions
         zsh-syntax-highlighting
     )
-
-    # Needed taps for casks (are they still needed?)
-    brew tap homebrew/cask-cask
-    brew tap homebrew/cask-versions
 
     # loop through the formulas, install missing ones
     for t in ${formulas[@]}; do
