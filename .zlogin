@@ -1,6 +1,8 @@
+#!/usr/bin/env bash
+
 function install_composer {
     # Install PHP Composer
-    which composer > /dev/null
+    command -v composer > /dev/null
     COMPOSER_INSTALLED=$?
 
     if [ ! "$COMPOSER_INSTALLED" -eq 0 ]; then
@@ -26,10 +28,10 @@ function update_formulas {
     # Update all Mac App Store apps
     # mas upgrade
     # Install and Update PHP Composer
-    install_composer
-    composer selfupdate
+    # install_composer
+    # composer selfupdate
 
-    which docker > /dev/null
+    command -v docker > /dev/null
     DOCKER_INSTALLED=$?
 
     if [ "$DOCKER_INSTALLED" -eq 0 ]; then
@@ -43,13 +45,24 @@ function oc-rsh {
     if [[ -z "$1" ]]; then
         echo "OpenShift pod name required."
         exit() { return 1; }
-    else
-    # ignore shibboleth pods
-    # cronjob pods have unix timestamps (10-digits); ignore those
-    # ignore build pods
-    # ignore deploy pods
-    oc rsh $(oc get pods | grep "$1" | grep Running | grep -v deploy | grep -v shibboleth | grep -v build | grep -ve '\d\d\d\d\d\d\d\d\d\d' | awk '{print $1}')
     fi
+
+    # Only keep running pods with the specified app name ($1)
+    # Ignore shibboleth, deploy, build, and cronjob pods
+    # cronjob pods have unix timestamps (10-digits)
+    oc rsh "$(oc get pods | grep "$1" | grep Running | grep -v deploy | grep -v shibboleth | grep -v build | grep -ve '\d{10}' | awk '{print $1}')"
+}
+
+function oc-logs {
+    if [[ -z "$1" ]]; then
+        echo "OpenShift pod name required."
+        exit() { return 1; }
+    fi
+
+    # Only keep running pods with the specified app name ($1)
+    # Ignore shibboleth, deploy, build, and cronjob pods
+    # cronjob pods have unix timestamps (10-digits)
+    oc logs "$(oc get pods | grep "$1" | grep Running | grep -v deploy | grep -v shibboleth | grep -v build | grep -ve '\d{10}' | awk '{print $1}')" -f
 }
 
 # Merges the current branch into the specified branch and then switches back. Does a "git pull" before merging.
@@ -57,38 +70,40 @@ function oc-rsh {
 # TODO: make it so that no parameters shows help text
 # TODO: make sure at least two branches are specified or show an error message
 function gitsync {
-        current=$(git symbolic-ref --short -q HEAD)
-        if [[ -z "$1" ]]; then
-            echo "Merges the current branch with the specified one, pushes the changes without leaving the current branch.";
-            echo "usage: gitsync [destination]"
-            exit() { return 1; }
-        elif [ -z "$current" ]; then
-            echo "Could not determine the current branch. Make sure the current folder is a git repository."
-            echo "usage: gitsync [destination]"
-            exit() { return 1; }
-        else
-            echo Merging "$current" branch into "$1" branch...
-            echo Switching to "$1" branch...
-	        git checkout $1
-            echo Pulling latest changes into "$1" branch before merging...
-            git pull
-            echo Merging "$current" branch into "$1" branch...
-            git merge $current
-	        git push
-	        git checkout $current
-        fi
+    current=$(git symbolic-ref --short -q HEAD)
+    if [[ -z "$1" ]]; then
+        echo "Merges the current branch with the specified one, pushes the changes without leaving the current branch.";
+        echo "usage: gitsync [destination]"
+        exit() { return 1; }
+    fi
+
+    if [ -z "$current" ]; then
+        echo "Could not determine the current branch. Make sure the current folder is a git repository."
+        echo "usage: gitsync [destination]"
+        exit() { return 1; }
+    fi
+
+    echo Merging "$current" branch into "$1" branch...
+    echo Switching to "$1" branch...
+    git checkout "$1"
+    echo Pulling latest changes into "$1" branch before merging...
+    git pull
+    echo Merging "$current" branch into "$1" branch...
+    git merge "$current"
+    git push
+    git checkout "$current"
 }
 
 function add_dock_items {
     # make sure brew installed
-    which dockutil > /dev/null
+    command -v dockutil > /dev/null
     DOCKUTIL_INSTALLED=$?
 
     # 1. If Homebrew is not installed, go ahead and install it
     if [ ! "$DOCKUTIL_INSTALLED" -eq 0 ]; then
         echo "Dockutil not installed; attempting installation..."
         brew install dockutil
-        which dockutil > /dev/null
+        command -v dockutil > /dev/null
         DOCKUTIL_INSTALLED=$?
         if [ ! "$DOCKUTIL_INSTALLED" -eq 0 ]; then
         echo "Dockutil unavailable; stopping here..."
@@ -154,15 +169,20 @@ function extensions_install {
     # Visual Studio Code extensions
     vscode=(
         '77qingliu.sas-syntax'
+        # Official Microsoft extension for Docker
         'ms-azuretools.vscode-docker'
+        # Official Microsoft extension for Python
         'ms-python.python'
-        'ms-vscode-remote.remote-containers'
+        # Official Microsoft extension for using Docker containers
+        'ms-vscode-remote.remote-containers',
+        # ShellCheck linter for Bash Scripts
+        'timonwong.shellcheck'
     )
 
-    # Install Atom extensions
-    which apm > /dev/null
+    # Install Atom extensions (if atom is installed)
+    command -v apm > /dev/null
     ATOM_INSTALLED=$?
- 
+
     if [ "$ATOM_INSTALLED" -eq 0 ]; then
         for t in ${atom[@]}; do
             apm install $t
@@ -172,7 +192,7 @@ function extensions_install {
     # Install Visual Studio Code extensions
     which code > /dev/null
     VSCODE_INSTALLED=$?
-    
+
     if [ "$VSCODE_INSTALLED" -eq 0 ]; then
         for t in ${vscode[@]}; do
             code --install-extension $t
@@ -277,9 +297,11 @@ function install_casks {
             'macpass'
             'microsoft-teams'
             'netbeans-php'
+            'openemu'
             'podman'
             'powershell'
             'postman'
+            'retroarch'
             'sequel-pro'
             'soapui'
             'spotify'
@@ -329,7 +351,7 @@ function brew_install {
 
     # stop here if neofetch is already installed;
     # verifying installed formula can take seconds
-    which neofetch > /dev/null
+    command -v neofetch > /dev/null
     NEOFETCH_INSTALLED=$?
 
     if [ "$NEOFETCH_INSTALLED" -eq 0 ]; then
@@ -357,6 +379,8 @@ function brew_install {
         openshift-cli
         # Pandoc - a universal document converter (https://pandoc.org)
         pandoc-citeproc
+        # Linter for Bash scripts
+        shellcheck
         source-to-image
         tmux
         tree
@@ -370,12 +394,12 @@ function brew_install {
     # loop through the formulas, install missing ones
     for t in ${formulas[@]}; do
         #echo "checking if $t formula is installed..."
-        brew ls --versions $t > /dev/null
+        brew ls --versions "$t" > /dev/null
         formula_installed=$?
         #echo "$t installed: $formula_installed"
         if [ ! "$formula_installed" -eq 0 ]; then
             echo "Installing '$t' formula..."
-            brew install $t
+            brew install "$t"
         fi
     done
 

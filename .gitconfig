@@ -13,3 +13,9 @@
         email = patrick_lewis@unc.edu
 [branch]
 	autosetuprebase = always
+[push]
+	default = current
+[core]
+    # https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#_code_core_autocrlf_code
+    # Should be set to "true" on Windows, "input" on macOS/Linux
+	autocrlf = input

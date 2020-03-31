@@ -33,5 +33,6 @@
     "files.associations": {
         "*.sql": "sql"
     },
-    "diffEditor.ignoreTrimWhitespace": false
+    "diffEditor.ignoreTrimWhitespace": false,
+    "remote.containers.workspaceMountConsistency": "consistent"
 }
