@@ -4,7 +4,8 @@
 
 # But not these files...
 # Cisco AnyConnect Secure Mobility Client settings
-!.anyconnect
+# Commented out because it has a client thumbprint and my onyen
+# !.anyconnect
 !.bash_profile
 !.boot_camp_add.sh
 !.eslintrc.json
