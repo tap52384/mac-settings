@@ -34,5 +34,16 @@
         "*.sql": "sql"
     },
     "diffEditor.ignoreTrimWhitespace": false,
-    "remote.containers.workspaceMountConsistency": "consistent"
+    "remote.containers.workspaceMountConsistency": "consistent",
+    "python.linting.pylintUseMinimalCheckers": false,
+    "java.semanticHighlighting.enabled": true,
+    "java.configuration.runtimes": [],
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "python.languageServer": "Microsoft",
+    "editor.renameOnType": true
 }

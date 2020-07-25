@@ -294,6 +294,7 @@ function install_casks {
             'itsycal'
             'java'
             'lastpass'
+            'mactex'
             'macpass'
             'microsoft-teams'
             'netbeans-php'
@@ -301,6 +302,7 @@ function install_casks {
             'podman'
             'powershell'
             'postman'
+            'proxyman'
             'retroarch'
             'sequel-pro'
             'soapui'
@@ -369,6 +371,7 @@ function brew_install {
         # https://github.com/kcrawford/dockutil
         dockutil
         git
+        git-extras
         lastpass-cli
         libiconv
         # mac app store - https://github.com/mas-cli/mas
