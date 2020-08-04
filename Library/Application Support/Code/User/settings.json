@@ -45,5 +45,8 @@
         "**/.factorypath": true
     },
     "python.languageServer": "Microsoft",
-    "editor.renameOnType": true
+    "editor.renameOnType": true,
+    "shellcheck.customArgs": [
+        "-x"
+    ]
 }

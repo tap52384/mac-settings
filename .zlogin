@@ -282,8 +282,8 @@ function install_casks {
 
         # Install apps via Homebrew Cask
         casks=(
+            '4k-video-downloader'
             'adobe-creative-cloud'
-            # 'atom'
             'brave-browser'
             'docker'
             'firefox'
