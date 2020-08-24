@@ -47,6 +47,8 @@ function oc-rsh {
         exit() { return 1; }
     fi
 
+    oc login
+
     # Only keep running pods with the specified app name ($1)
     # Ignore shibboleth, deploy, build, and cronjob pods
     # cronjob pods have unix timestamps (10-digits)
@@ -58,6 +60,8 @@ function oc-logs {
         echo "OpenShift pod name required."
         exit() { return 1; }
     fi
+
+    oc login
 
     # Only keep running pods with the specified app name ($1)
     # Ignore shibboleth, deploy, build, and cronjob pods
@@ -285,6 +289,7 @@ function install_casks {
             '4k-video-downloader'
             'adobe-creative-cloud'
             'brave-browser'
+            'calibre'
             'docker'
             'firefox'
             'flycut'
