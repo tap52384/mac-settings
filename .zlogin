@@ -295,6 +295,7 @@ function install_casks {
             'flycut'
             'google-backup-and-sync'
             'google-chrome'
+            'grammarly'
             'iterm2'
             'itsycal'
             'java'
