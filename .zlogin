@@ -19,7 +19,6 @@ function install_composer {
 function update_formulas {
     brew update
     brew upgrade
-    brew cask upgrade
     brew cleanup -s
     brew doctor
     brew missing
@@ -47,6 +46,9 @@ function oc-rsh {
         exit() { return 1; }
     fi
 
+    # 1. Login with the OpenShift command-line tools (oc)
+    # The "whoami" command gets your computer username; if your computer username is
+    # not your Onyen, then use your Onyen instead
     oc login
 
     # Only keep running pods with the specified app name ($1)
@@ -221,13 +223,18 @@ function app_store_install {
         '823766827'  # Microsoft OneDrive
     )
 
-    # loop through the formulas, install missing ones
-    for t in ${apps[@]}; do
-       mas install $t
-    done
+    command -V mas > /dev/null
+    MAS_INSTALLED=$?
 
-    # Upgrade all applications
-    mas upgrade
+    if [ "$MAS_INSTALLED" -eq 0 ]; then
+        # loop through the formulas, install missing ones
+        for t in ${apps[@]}; do
+        mas install $t
+        done
+
+        # Upgrade all applications
+        mas upgrade
+    fi;
 }
 
 #
@@ -295,7 +302,7 @@ function install_casks {
             'flycut'
             'google-backup-and-sync'
             'google-chrome'
-            'grammarly'
+            # 'grammarly'
             'iterm2'
             'itsycal'
             'java'
@@ -303,7 +310,6 @@ function install_casks {
             'mactex'
             'macpass'
             'microsoft-teams'
-            'netbeans-php'
             'openemu'
             'podman'
             'powershell'
@@ -313,8 +319,8 @@ function install_casks {
             'sequel-pro'
             'soapui'
             'spotify'
-            'sublime-text'
-            'tableau-reader'
+            # 'sublime-text'
+            # 'tableau-reader'
             'virtualbox'
             'virtualbox-extension-pack'
             'visual-studio-code'
@@ -338,7 +344,7 @@ function install_casks {
     done
 
     # Install PHP Composer
-    install_composer
+    # install_composer
 }
 
 function brew_install {
@@ -375,13 +381,14 @@ function brew_install {
         ctags
         # Command line tool for managing dock items
         # https://github.com/kcrawford/dockutil
-        dockutil
+        # dockutil
+        gh
         git
         git-extras
         lastpass-cli
         libiconv
         # mac app store - https://github.com/mas-cli/mas
-        mas
+        # mas
         neofetch
         mame
         # ntfs-3g
@@ -394,7 +401,7 @@ function brew_install {
         tmux
         tree
         webp
-        zsh
+        # zsh
         zsh-autosuggestions
         zsh-completions
         zsh-syntax-highlighting
@@ -416,8 +423,8 @@ function brew_install {
     install_casks
     npm_install
     extensions_install
-    add_dock_items
-    install_oh_my_zsh
+    # add_dock_items
+    # install_oh_my_zsh
 
     # open Neofetch
     neofetch

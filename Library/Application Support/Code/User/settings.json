@@ -48,5 +48,10 @@
     "editor.renameOnType": true,
     "shellcheck.customArgs": [
         "-x"
-    ]
+    ],
+    "editor.renderWhitespace": "all",
+    "python.linting.pylintArgs": [
+        "--extension-pkg-whitelist=cx_Oracle"
+    ],
+    "java.refactor.renameFromFileExplorer": "preview"
 }
