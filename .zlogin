@@ -365,6 +365,7 @@ function brew_install {
 
     # stop here if neofetch is already installed;
     # verifying installed formula can take seconds
+    # This prevents the rest of this function from running more than once.
     command -v neofetch > /dev/null
     NEOFETCH_INSTALLED=$?
 
@@ -423,11 +424,35 @@ function brew_install {
     install_casks
     npm_install
     extensions_install
+    configure_git
     # add_dock_items
     # install_oh_my_zsh
 
     # open Neofetch
     neofetch
+}
+
+# Configure global git settings
+function configure_git {
+    git config --global alias.lol "log --graph --decorate --pretty=oneline --abbrev-commit"
+    git config --global alias.lola "log --graph --decorate --pretty=oneline --abbrev-commit --all"
+    git config --global branch.autosetuprebase always
+    git config --global color.branch true
+    git config --global color.diff true
+    git config --global color.interactive true
+    git config --global color.status true
+    git config --global color.ui true
+    git config --global core.autocrlf input
+    # Should use appropriate credentials based on repo
+    # https://git-scm.com/docs/gitcredentials#Documentation/gitcredentials.txt-useHttpPath
+    git config --global credential.useHttpPath true
+    echo "Your name to appear as author of git commits: "
+    read namevar
+    echo "Entered name: $namevar"
+    git config --global user.name "$namevar"
+    echo "Your email for git commits (use work email if work computer): "
+    read emailvar
+    git config --global user.email "$emailvar"
 }
 
 
