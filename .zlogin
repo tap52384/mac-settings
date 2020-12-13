@@ -348,6 +348,8 @@ function install_casks {
 }
 
 function brew_install {
+    touch ~/.zshrc
+
     # make sure brew installed
     which brew > /dev/null
     BREW_INSTALLED=$?
