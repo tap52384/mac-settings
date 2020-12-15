@@ -317,6 +317,7 @@ function install_casks {
             'proxyman'
             'retroarch'
             'sequel-pro'
+            'skype'
             'soapui'
             'spotify'
             # 'sublime-text'
@@ -397,7 +398,8 @@ function brew_install {
         # ntfs-3g
         openshift-cli
         # Pandoc - a universal document converter (https://pandoc.org)
-        pandoc-citeproc
+        # https://github.com/jgm/pandoc
+        pandoc
         # Linter for Bash scripts
         shellcheck
         source-to-image
