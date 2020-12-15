@@ -27,8 +27,8 @@ function update_formulas {
     # Update all Mac App Store apps
     # mas upgrade
     # Install and Update PHP Composer
-    # install_composer
-    # composer selfupdate
+    install_composer
+    composer selfupdate
 
     command -v docker > /dev/null
     DOCKER_INSTALLED=$?
@@ -400,6 +400,7 @@ function brew_install {
         # Pandoc - a universal document converter (https://pandoc.org)
         # https://github.com/jgm/pandoc
         pandoc
+        php
         # Linter for Bash scripts
         shellcheck
         source-to-image
