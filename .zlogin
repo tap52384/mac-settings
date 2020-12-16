@@ -318,6 +318,7 @@ function install_casks {
             'retroarch'
             'sequel-pro'
             'skype'
+            'slack'
             'soapui'
             'spotify'
             # 'sublime-text'
