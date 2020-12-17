@@ -53,5 +53,6 @@
     "python.linting.pylintArgs": [
         "--extension-pkg-whitelist=cx_Oracle"
     ],
-    "java.refactor.renameFromFileExplorer": "preview"
+    "java.refactor.renameFromFileExplorer": "preview",
+    "shellcheck.executablePath": "/usr/local/bin/shellcheck"
 }

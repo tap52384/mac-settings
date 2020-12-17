@@ -298,6 +298,7 @@ function install_casks {
             'brave-browser'
             'calibre'
             'docker'
+            'dotnet-sdk'
             'firefox'
             'flycut'
             'google-backup-and-sync'
