@@ -324,6 +324,7 @@ function install_casks {
             'mactex'
             'macpass'
             'microsoft-teams'
+            'onedrive'
             'openemu'
             'podman'
             'powershell'
@@ -348,7 +349,7 @@ function install_casks {
     # Apps that cannot be installed via shell
     # Cisco AnyConnect Secure Mobility Client
     # Oracle SQL Developer
-    # 
+    # Citrix Workspace 
 
     # loop through the formulas, install missing ones
     for t in ${casks[@]}; do
