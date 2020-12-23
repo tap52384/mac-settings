@@ -232,6 +232,7 @@ function app_store_install {
         '1496833156' # Playgrounds (3.3.1)
         '899174769'  # SQLPro for MySQL (2020.103)
         '640199958'  # Developer (8.4)
+        '409203825'  # Numbers
     )
 
     command -V mas > /dev/null
@@ -343,6 +344,11 @@ function install_casks {
             'youtube-to-mp3'
             'zoomus'
         )
+
+    # Apps that cannot be installed via shell
+    # Cisco AnyConnect Secure Mobility Client
+    # Oracle SQL Developer
+    # 
 
     # loop through the formulas, install missing ones
     for t in ${casks[@]}; do
