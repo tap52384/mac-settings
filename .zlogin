@@ -450,6 +450,7 @@ function brew_install {
     npm_install
     extensions_install
     configure_git
+    app_store_install
     # add_dock_items
     # install_oh_my_zsh
 
