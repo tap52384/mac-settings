@@ -221,6 +221,15 @@ function app_store_install {
         '682658836'  # Garageband
         '926036361'  # LastPass Password Manager
         '823766827'  # Microsoft OneDrive
+        '1274495053' # Microsoft To Do
+        '1287752517' # Alto's Adventure
+        '634159523'  # MainStage 3 (3.4.4)
+        '1495097700' # Alto's Odyssey (1.0.7)
+        '1099120373' # Exporter (2.1.4)
+        '408981434'  # iMovie (10.1.15)
+        '1378806557' # TeraCopy (1.0)
+        '1032755628' # Duplicate File Finder (6.7.4)
+        '1496833156' # Playgrounds (3.3.1)
     )
 
     command -V mas > /dev/null
@@ -394,7 +403,7 @@ function brew_install {
         lastpass-cli
         libiconv
         # mac app store - https://github.com/mas-cli/mas
-        # mas
+        mas
         neofetch
         mame
         # ntfs-3g
