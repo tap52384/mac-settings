@@ -17,6 +17,8 @@ xcode-select --install
 sudo xcodebuild -license accept
 # Links the current directory to this repo
 git remote add origin https://github.com/tap52384/mac-settings.git
+# Fetch all branches for this repository
+git fetch --all
 # Checks out the "dev" branch and sets the upstream to "origin/dev"
 git checkout origin/dev -t
 ```
