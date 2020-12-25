@@ -319,7 +319,6 @@ function install_casks {
             'intellij-idea-ce'
             'iterm2'
             'itsycal'
-            'java'
             'lastpass'
             'mactex'
             'macpass'
@@ -410,6 +409,7 @@ function brew_install {
         gh
         git
         git-extras
+        java
         lastpass-cli
         libiconv
         # mac app store - https://github.com/mas-cli/mas
