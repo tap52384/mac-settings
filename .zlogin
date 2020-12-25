@@ -257,10 +257,10 @@ function npm_install {
     # Best method since it does not require root!
     # Node Version Manager
     # https://github.com/nvm-sh/nvm
+    touch ~/.zshrc
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
     nvm install node
 
     packages=(
@@ -325,7 +325,6 @@ function install_casks {
             'microsoft-teams'
             'onedrive'
             'openemu'
-            'podman'
             'powershell'
             'postman'
             'proxyman'
@@ -422,6 +421,7 @@ function brew_install {
         # https://github.com/jgm/pandoc
         pandoc
         php
+        podman
         # Linter for Bash scripts
         shellcheck
         source-to-image
