@@ -359,7 +359,7 @@ function install_casks {
         #echo "$t installed: $formula_installed"
         if [ ! "$formula_installed" -eq 0 ]; then
             echo "Installing '$t' cask..."
-            brew cask install $t
+            brew install --cask $t
         else
             echo "Cask '$t' is already installed; skipping..."
         fi
