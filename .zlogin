@@ -392,7 +392,6 @@ function brew_install {
     NEOFETCH_INSTALLED=$?
 
     if [ "$NEOFETCH_INSTALLED" -eq 0 ]; then
-        neofetch
         return 0;
     fi
 
