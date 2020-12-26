@@ -8,8 +8,12 @@ more for macOS
 In a macOS terminal:
 
 ```bash
+# Open the App Store and sign in. Login cannot be scripted:
+open /System/Applications/App\ Store.app/
 # Instructions inspired by https://stackoverflow.com/a/36084134/1620794
 cd ~
+# Make a directory for your code
+mkdir -p ~/code
 # may have to install command-line tools
 git init
 # Agree to the Xcode/iOS license if you haven't already
@@ -27,16 +31,16 @@ git checkout origin/dev -t
 
 This code has several purposes:
 
--   To quickly install applications via terminal
-    -   [Homebrew](https://brew.sh/)
-    -   [Mac App Store command line interface](https://github.com/mas-cli/mas)
-    -   [Node Version Manager](https://github.com/creationix/nvm)
--   Install extensions
-    -   Atom
-    -   Visual Studio Code
--   Monitor and capture configurations for apps
-    -   Atom
-    -   Visual Studio Code
+- To quickly install applications via terminal
+  - [Homebrew](https://brew.sh/)
+  - [Mac App Store command line interface](https://github.com/mas-cli/mas)
+  - [Node Version Manager](https://github.com/creationix/nvm)
+- Install extensions
+  - Atom
+  - Visual Studio Code
+- Monitor and capture configurations for apps
+  - Atom
+  - Visual Studio Code
 
 ## Links
 

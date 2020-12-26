@@ -422,6 +422,7 @@ function brew_install {
         pandoc
         php
         podman
+        romkatv/powerlevel10k/powerlevel10k
         # Linter for Bash scripts
         shellcheck
         source-to-image
