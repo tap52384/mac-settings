@@ -230,7 +230,6 @@ function app_store_install {
         '1378806557' # TeraCopy (1.0)
         '1032755628' # Duplicate File Finder (6.7.4)
         '1496833156' # Playgrounds (3.3.1)
-        '899174769'  # SQLPro for MySQL (2020.103)
         '640199958'  # Developer (8.4)
         '409203825'  # Numbers
     )
@@ -329,6 +328,7 @@ function install_casks {
             'postman'
             'proxyman'
             'retroarch'
+            'sequel-ace'
             'sf-symbols'
             'skype'
             'slack'
