@@ -18,3 +18,9 @@ source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # Add Laravel Sail alias
 alias sail='bash vendor/bin/sail'
+
+# highlights folders in blue using default settings
+# https://www.cyberciti.biz/faq/apple-mac-osx-terminal-color-ls-output-option/
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+alias ls='ls -G'
