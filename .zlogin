@@ -95,7 +95,7 @@ function gitsync {
     echo Pulling latest changes into "$1" branch before merging...
     git pull
     echo Merging "$current" branch into "$1" branch...
-    git merge "$current"
+    git merge origin/"$current"
     git push
     git checkout "$current"
 }
@@ -306,6 +306,8 @@ function install_casks {
         casks=(
             '4k-video-downloader'
             'adobe-creative-cloud'
+            # Like SQL Developer, but for SQL Server
+            'azure-data-studio'
             'brave-browser'
             'calibre'
             'docker'

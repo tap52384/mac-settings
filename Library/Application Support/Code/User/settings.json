@@ -45,7 +45,7 @@
         "**/.factorypath": true
     },
     "python.languageServer": "Microsoft",
-    "editor.renameOnType": true,
+    "editor.linkedEditing": true,
     "shellcheck.customArgs": [
         "-x"
     ],
@@ -54,5 +54,19 @@
         "--extension-pkg-whitelist=cx_Oracle"
     ],
     "java.refactor.renameFromFileExplorer": "preview",
-    "shellcheck.executablePath": "/usr/local/bin/shellcheck"
+    "shellcheck.executablePath": "/usr/local/bin/shellcheck",
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "vue"
+    ],
+    "eslint.alwaysShowStatus": true,
+    "eslint.workingDirectories": [
+        "./frontend"
+    ],
+    "vetur.validation.template": false,
+    "html.autoClosingTags": true,
+    "javascript.autoClosingTags": true,
+    "typescript.autoClosingTags": true,
+    "javascript.suggest.autoImports": true
 }
