@@ -94,7 +94,7 @@ function gitsync {
     git checkout "$1"
     echo Pulling latest changes into "$1" branch before merging...
     git pull
-    echo Merging "$current" branch into "$1" branch...
+    echo Merging origin/"$current" branch into "$1" branch...
     git merge origin/"$current"
     git push
     git checkout "$current"
@@ -324,13 +324,13 @@ function install_casks {
             'mactex'
             'macpass'
             'microsoft-teams'
+            'mysqlworkbench'
             'onedrive'
             'openemu'
             'powershell'
             'postman'
             'proxyman'
             'retroarch'
-            'sequel-ace'
             'sf-symbols'
             'skype'
             'slack'

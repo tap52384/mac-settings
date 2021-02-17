@@ -2,7 +2,7 @@
     "editor.rulers":[
         80, 100
     ],
-    "phpcs.executablePath": "/Users/patrick/.composer/vendor/squizlabs/php_codesniffer/bin/phpcs",
+    "phpcs.executablePath": ".composer/vendor/squizlabs/php_codesniffer/bin/phpcs",
     "phpmd.command": "/Users/patrick/.composer/vendor/phpmd/phpmd/src/bin/phpmd",
     "phpcs.standard": "PSR2",
     "files.trimTrailingWhitespace": true,
@@ -11,7 +11,6 @@
     "python.linting.pylintEnabled": true,
     "workbench.colorTheme": "Monokai",
     "[log]": {},
-    "editor.largeFileOptimizations": false,
     "python.linting.pylintPath": "/usr/local/bin/pylint",
     "git.autofetch": true,
     "liveshare.audio.joinCallBehavior": "accept",
@@ -68,5 +67,6 @@
     "html.autoClosingTags": true,
     "javascript.autoClosingTags": true,
     "typescript.autoClosingTags": true,
-    "javascript.suggest.autoImports": true
+    "javascript.suggest.autoImports": true,
+    "editor.largeFileOptimizations": false
 }
