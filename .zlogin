@@ -34,7 +34,9 @@ function update_formulas {
     DOCKER_INSTALLED=$?
 
     if [ "$DOCKER_INSTALLED" -eq 0 ]; then
-        docker system prune -f
+        # Prune every docker object, including volumes
+        # https://docs.docker.com/config/pruning/
+        docker system prune --volumes -f
     else
         echo "Docker is not installed; system prune failed."
     fi
@@ -49,12 +51,12 @@ function oc-rsh {
     # 1. Login with the OpenShift command-line tools (oc)
     # The "whoami" command gets your computer username; if your computer username is
     # not your Onyen, then use your Onyen instead
-    oc login
+    oc whoami > /dev/null 2>&1 || oc login
 
     # Only keep running pods with the specified app name ($1)
-    # Ignore shibboleth, deploy, build, and cronjob pods
+    # Ignore deploy, build, and cronjob pods
     # cronjob pods have unix timestamps (10-digits)
-    oc rsh "$(oc get pods | grep "$1" | grep Running | grep -v deploy | grep -v shibboleth | grep -v build | grep -ve '\d{10}' | awk '{print $1}')"
+    oc rsh "$(oc get pods --selector deploymentconfig="$1" | grep Running | grep -v deploy | grep -v build | grep -ve '\d{10}' | awk '{print $1}')"
 }
 
 function oc-logs {
@@ -63,12 +65,13 @@ function oc-logs {
         exit() { return 1; }
     fi
 
-    oc login
+    oc whoami > /dev/null 2>&1 || oc login
 
     # Only keep running pods with the specified app name ($1)
     # Ignore shibboleth, deploy, build, and cronjob pods
     # cronjob pods have unix timestamps (10-digits)
-    oc logs "$(oc get pods | grep "$1" | grep Running | grep -v deploy | grep -v shibboleth | grep -v build | grep -ve '\d{10}' | awk '{print $1}')" -f
+    oc logs "$(oc get pods --selector deploymentconfig="$1" | grep Running | grep -v deploy | grep -v build | grep -ve '\d{10}' | awk '{print $1}')" -f
+    # oc logs "$(oc get pods | grep "$1" | grep Running | grep -v deploy | grep -v build | grep -ve '\d{10}' | awk '{print $1}')" -f
 }
 
 # Merges the current branch into the specified branch and then switches back. Does a "git pull" before merging.
@@ -91,7 +94,7 @@ function gitsync {
 
     echo Merging "$current" branch into "$1" branch...
     echo Switching to "$1" branch...
-    git checkout "$1"
+    git checkout "$1" || { echo "The branch '$1' may not exist."; return 1; }
     echo Pulling latest changes into "$1" branch before merging...
     git pull
     echo Merging origin/"$current" branch into "$1" branch...
@@ -310,6 +313,7 @@ function install_casks {
             'azure-data-studio'
             'brave-browser'
             'calibre'
+            'clone-hero'
             'docker'
             'dotnet-sdk'
             'firefox'
@@ -343,7 +347,7 @@ function install_casks {
             'visual-studio-code'
             'vlc'
             'youtube-to-mp3'
-            'zoomus'
+            'zoom'
         )
 
     # Apps that cannot be installed via shell
@@ -410,7 +414,10 @@ function brew_install {
         git
         git-extras
         java
+        jq
         lastpass-cli
+        # https://www.videolan.org/developers/libdvdcss.html
+        libdvdcss
         libiconv
         # mac app store - https://github.com/mas-cli/mas
         mas

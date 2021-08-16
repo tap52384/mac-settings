@@ -43,7 +43,7 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "python.languageServer": "Microsoft",
+    "python.languageServer": "Pylance",
     "editor.linkedEditing": true,
     "shellcheck.customArgs": [
         "-x"
@@ -68,5 +68,18 @@
     "javascript.autoClosingTags": true,
     "typescript.autoClosingTags": true,
     "javascript.suggest.autoImports": true,
-    "editor.largeFileOptimizations": false
+    "editor.largeFileOptimizations": false,
+    "workbench.startupEditor": "gettingStarted",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "python.analysis.typeCheckingMode": "basic",
+    "security.workspace.trust.untrustedFiles": "open",
+    "python.defaultInterpreterPath": "/usr/local/bin/python3",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.inheritEnv": true
 }
