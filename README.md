@@ -36,13 +36,11 @@ This code has several purposes:
   - [Mac App Store command line interface](https://github.com/mas-cli/mas)
   - [Node Version Manager](https://github.com/creationix/nvm)
 - Install extensions
-  - Atom
-  - Visual Studio Code
-- Monitor and capture configurations for apps
-  - Atom
-  - Visual Studio Code
+  - [Visual Studio Code](https://code.visualstudio.com/)
+- Add Bash functions for OpenShift (use [oc](https://docs.openshift.com/container-platform/4.7/cli_reference/openshift_cli/developer-cli-commands.html) to
+tail logs and SSH into a pod)
 
 ## Links
 
-[Homebrew](https://brew.sh/)
-[LSCOLORS Generator](https://geoff.greer.fm/lscolors/)
+- [Homebrew](https://brew.sh/)
+- [LSCOLORS Generator](https://geoff.greer.fm/lscolors/)

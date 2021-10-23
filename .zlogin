@@ -406,6 +406,7 @@ function brew_install {
         # bash
         brew-cask-completion
         cask
+	coreutils
         ctags
         # Command line tool for managing dock items
         # https://github.com/kcrawford/dockutil
@@ -436,6 +437,7 @@ function brew_install {
         source-to-image
         tmux
         tree
+	vagrant
         webp
         # zsh
         zsh-autosuggestions
@@ -479,6 +481,7 @@ function configure_git {
     git config --global color.status true
     git config --global color.ui true
     git config --global core.autocrlf input
+    git config --global init.defaultBranch main
     # Should use appropriate credentials based on repo
     # https://git-scm.com/docs/gitcredentials#Documentation/gitcredentials.txt-useHttpPath
     git config --global credential.useHttpPath true

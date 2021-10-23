@@ -7,7 +7,6 @@
     "phpcs.standard": "PSR2",
     "files.trimTrailingWhitespace": true,
     "python.pythonPath": "/usr/local/bin/python3",
-    "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
     "workbench.colorTheme": "Monokai",
     "[log]": {},
@@ -69,7 +68,7 @@
     "typescript.autoClosingTags": true,
     "javascript.suggest.autoImports": true,
     "editor.largeFileOptimizations": false,
-    "workbench.startupEditor": "gettingStarted",
+    "workbench.startupEditor": "welcomePage",
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
@@ -81,5 +80,9 @@
         "jupyter-notebook": "left"
     },
     "terminal.integrated.defaultProfile.linux": "bash",
-    "terminal.integrated.inheritEnv": true
+    "terminal.integrated.inheritEnv": true,
+    "sql.linter.executablePath": "/usr/local/bin/sqlfluff",
+    "redhat.telemetry.enabled": true,
+    "editor.guides.bracketPairs": true,
+    "editor.bracketPairColorization.enabled": true
 }
