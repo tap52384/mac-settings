@@ -215,7 +215,7 @@ function app_store_install {
         '411643860'  # DaisyDisk
         '497799835'  # Xcode
         '441258766'  # Magnet
-        '1295203466' # Microsoft Remote Desktop 10.0
+        # '1295203466' # Microsoft Remote Desktop 10.0
         '462054704'  # Microsoft Word
         '784801555'  # Microsoft OneNote
         '462062816'  # Microsoft PowerPoint
@@ -225,9 +225,9 @@ function app_store_install {
         '926036361'  # LastPass Password Manager
         '823766827'  # Microsoft OneDrive
         '1274495053' # Microsoft To Do
-        '1287752517' # Alto's Adventure
+        # '1287752517' # Alto's Adventure
         '634159523'  # MainStage 3 (3.4.4)
-        '1495097700' # Alto's Odyssey (1.0.7)
+        # '1495097700' # Alto's Odyssey (1.0.7)
         '1099120373' # Exporter (2.1.4)
         '408981434'  # iMovie (10.1.15)
         '1378806557' # TeraCopy (1.0)
@@ -235,6 +235,7 @@ function app_store_install {
         '1496833156' # Playgrounds (3.3.1)
         '640199958'  # Developer (8.4)
         '409203825'  # Numbers
+	'1193539993' # Brother iPrint&Scan
     )
 
     command -V mas > /dev/null
@@ -318,8 +319,8 @@ function install_casks {
             'dotnet-sdk'
             'firefox'
             'flycut'
-            'google-backup-and-sync'
             'google-chrome'
+	    'google-drive'
             # 'grammarly'
             'intellij-idea-ce'
             'iterm2'
