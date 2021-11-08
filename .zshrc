@@ -30,3 +30,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 # Set Homebrew Python 3 as the default
 alias python=/usr/local/bin/python3
+
+# Add brew ruby and gems path to use newer version
+export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
