@@ -13,3 +13,6 @@ export PATH="/usr/local/sbin:$PATH"
 # Add Composer to $PATH
 export PATH="$HOME/.composer/vendor/bin"
 
+# Set SDKROOT as needed for Jekyll on macOS
+# https://jekyllrb.com/docs/installation/macos/
+export SDKROOT=$(xcrun --show-sdk-path)

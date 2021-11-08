@@ -24,7 +24,7 @@
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "python.jediEnabled": false,
     "terminal.integrated.copyOnSelection": true,
-    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "terminal.integrated.fontFamily": "monospace",
     "[oracle]": {
 
     },
@@ -84,5 +84,6 @@
     "sql.linter.executablePath": "/usr/local/bin/sqlfluff",
     "redhat.telemetry.enabled": true,
     "editor.guides.bracketPairs": true,
-    "editor.bracketPairColorization.enabled": true
+    "editor.bracketPairColorization.enabled": true,
+    "terminal.integrated.defaultProfile.windows": "Git Bash"
 }
