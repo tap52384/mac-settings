@@ -33,3 +33,10 @@ alias python=/usr/local/bin/python3
 
 # Add brew ruby and gems path to use newer version
 export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
+
+# Set SDKROOT as needed for Jekyll on macOS
+# https://jekyllrb.com/docs/installation/macos/
+# xcode-select --install
+# If the above command doesn't allow you to find xcrun, try
+# sudo xcode-select --reset
+export SDKROOT=$(xcrun --show-sdk-path)

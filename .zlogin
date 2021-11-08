@@ -18,7 +18,7 @@ function install_composer {
 #   Update all Homebrew, Atom, and VS Code packages
 function update_formulas {
     # Make sure the xcode command line tools are installed
-    xcode-select -p > 1>/dev/null
+    xcode-select -p 1>/dev/null
     XCODE_CLI_TOOLS_INSTALLED=$?
 
     if [ ! "$XCODE_CLI_TOOLS_INSTALLED" -eq 0 ]; then
