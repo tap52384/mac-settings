@@ -32,7 +32,9 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 alias python=/usr/local/bin/python3
 
 # Add brew ruby and gems path to use newer version
+export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
+export PATH="$HOME/.gem/ruby/3.0.0/bin:$PATH"
 
 # Set SDKROOT as needed for Jekyll on macOS
 # https://jekyllrb.com/docs/installation/macos/
@@ -40,3 +42,6 @@ export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 # If the above command doesn't allow you to find xcrun, try
 # sudo xcode-select --reset
 export SDKROOT=$(xcrun --show-sdk-path)
+
+JEKYLL_GITHUB_TOKEN=$(echo | git credential-osxkeychain get | grep password)
+export JEKYLL_GITHUB_TOKEN=${JEKYLL_GITHUB_TOKEN//password=/}
