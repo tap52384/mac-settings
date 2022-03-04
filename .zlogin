@@ -446,6 +446,9 @@ function brew_install {
         # Linter for Bash scripts
         shellcheck
         source-to-image
+	# Open source file recovery utility (https://www.cgsecurity.org/)
+	# TestDisk and PhotoRec are installed
+	testdisk
         tmux
         tree
 	vagrant

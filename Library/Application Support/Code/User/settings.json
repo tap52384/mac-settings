@@ -79,11 +79,15 @@
         "default": "right",
         "jupyter-notebook": "left"
     },
-    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.defaultProfile.linux": "zsh",
     "terminal.integrated.inheritEnv": true,
     "sql.linter.executablePath": "/usr/local/bin/sqlfluff",
     "redhat.telemetry.enabled": true,
     "editor.guides.bracketPairs": true,
     "editor.bracketPairColorization.enabled": true,
-    "terminal.integrated.defaultProfile.windows": "Git Bash"
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "google-java-format.executable-path": "/usr/local/bin/google-java-format",
+    "[java]": {
+        "editor.defaultFormatter": "ilkka.google-java-format"
+    }
 }
