@@ -356,6 +356,7 @@ function install_casks {
             'virtualbox-extension-pack'
             'visual-studio-code'
             'vlc'
+	    'wine-stable'
             'youtube-to-mp3'
             'zoom'
         )
