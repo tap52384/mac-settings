@@ -319,6 +319,7 @@ function install_casks {
         casks=(
             '4k-video-downloader'
             'adobe-creative-cloud'
+	    'audacity'
             # Like SQL Developer, but for SQL Server
             'azure-data-studio'
             'brave-browser'
@@ -339,6 +340,7 @@ function install_casks {
             'macpass'
             'microsoft-teams'
             'mysqlworkbench'
+	    'obs'
             'onedrive'
             'openemu'
             'powershell'
