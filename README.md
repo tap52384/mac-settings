@@ -27,6 +27,9 @@ git fetch --all
 git checkout origin/dev -t
 ```
 
+- [StackOverflow - How to move all files including hidden files into parent directory via](https://stackoverflow.com/a/20192079/1620794)
+  - Has instructions for how to both move all files and copy all files
+
 ## Purpose
 
 This code has several purposes:
