@@ -5,7 +5,7 @@ more for macOS
 
 ## Usage
 
-In a macOS terminal:
+In a macOS/WSL2 terminal:
 
 ```bash
 # Open the App Store and sign in. Login cannot be scripted:
@@ -16,7 +16,7 @@ cd ~
 mkdir -p ~/code
 # may have to install command-line tools
 git init
-# Agree to the Xcode/iOS license if you haven't already
+# Agree to the Xcode/iOS license if you haven't already (macOS only)
 xcode-select --install
 sudo xcodebuild -license accept
 # Links the current directory to this repo
@@ -26,6 +26,12 @@ git fetch --all
 # Checks out the "dev" branch and sets the upstream to "origin/dev"
 git checkout origin/dev -t
 ```
+
+### TODO
+
+- Add new functions from zsh files in this repo to `.bash_profile`
+  - Add a section for installing applications via winget if the command is
+    available
 
 - [StackOverflow - How to move all files including hidden files into parent directory via](https://stackoverflow.com/a/20192079/1620794)
   - Has instructions for how to both move all files and copy all files
