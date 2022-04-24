@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 
+#
+#   mkcd command
+#   This is an improvised version of the mkcd command at:
+#   http://superuser.com/questions/152794/is-there-a-shortcut-to-mkdir-foo-and-immediately-cd-into-it
+#
+function mkcd {
+  last=$(eval "echo \$$#")
+  if [ ! -n "$last" ]; then
+    echo "Enter a directory name"
+  elif [ -d $last ]; then
+    echo "\`$last' already exists"
+  else
+    mkdir $@ && cd $last
+  fi
+}
+
 function install_composer {
     # Install PHP Composer
     command -v composer > /dev/null
@@ -293,6 +309,20 @@ function npm_install {
     done
 }
 
+function apt_install {
+    if ! command -v "apt" &> /dev/null; then
+        return 0;
+    fi
+
+    # Update and upgrade your packages using the preferred package manager for
+    # the distruction (apt for Ubuntu)
+    sudo apt update && sudo apt upgrade
+    sudo apt install \
+    build-essential \
+    neofetch \
+    shellcheck
+}
+
 function install_oh_my_zsh {
     # Install Oh My Zsh - https://github.com/ohmyzsh/ohmyzsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -319,7 +349,7 @@ function install_casks {
         casks=(
             '4k-video-downloader'
             'adobe-creative-cloud'
-	    'audacity'
+	        'audacity'
             # Like SQL Developer, but for SQL Server
             'azure-data-studio'
             'brave-browser'
@@ -330,7 +360,7 @@ function install_casks {
             'firefox'
             'flycut'
             'google-chrome'
-	    'google-drive'
+	        'google-drive'
             # 'grammarly'
             'intellij-idea-ce'
             'iterm2'
@@ -340,7 +370,7 @@ function install_casks {
             'macpass'
             'microsoft-teams'
             'mysqlworkbench'
-	    'obs'
+	        'obs'
             'onedrive'
             'openemu'
             'powershell'
@@ -358,7 +388,7 @@ function install_casks {
             'virtualbox-extension-pack'
             'visual-studio-code'
             'vlc'
-	    'wine-stable'
+	        'wine-stable'
             'youtube-to-mp3'
             'zoom'
         )
@@ -366,7 +396,7 @@ function install_casks {
     # Apps that cannot be installed via shell
     # Cisco AnyConnect Secure Mobility Client
     # Oracle SQL Developer
-    # Citrix Workspace 
+    # Citrix Workspace
 
     # loop through the formulas, install missing ones
     for t in ${casks[@]}; do
@@ -389,17 +419,18 @@ function install_casks {
 function brew_install {
     touch ~/.zshrc
 
-    # make sure brew installed
-    which brew > /dev/null
-    BREW_INSTALLED=$?
+    # Necessary for detecting whether homebrew is installed on Linux (WSL2 included)
+    if [[ "$OSTYPE" == "linux"* ]]; then
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    fi
 
     # 1. If Homebrew is not installed, go ahead and install it
-    if [ ! "$BREW_INSTALLED" -eq 0 ]; then
+    if ! command -v "brew" &> /dev/null; then
         echo "Homebrew not installed; installing now..."
-        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        which brew > /dev/null
-        BREW_INSTALLED=$?
-        if [ ! "$BREW_INSTALLED" -eq 0 ]; then
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+        # Check whether Homebrew is installed
+        if ! command -v "brew" &> /dev/null; then
         return 1;
         fi
     fi
@@ -407,10 +438,7 @@ function brew_install {
     # stop here if neofetch is already installed;
     # verifying installed formula can take seconds
     # This prevents the rest of this function from running more than once.
-    command -v neofetch > /dev/null
-    NEOFETCH_INSTALLED=$?
-
-    if [ "$NEOFETCH_INSTALLED" -eq 0 ]; then
+    if command -v "neofetch" &> /dev/null; then
         return 0;
     fi
 
@@ -462,29 +490,32 @@ function brew_install {
         zsh-syntax-highlighting
     )
 
-    # loop through the formulas, install missing ones
-    for t in ${formulas[@]}; do
-        #echo "checking if $t formula is installed..."
-        brew ls --versions "$t" > /dev/null
-        formula_installed=$?
-        #echo "$t installed: $formula_installed"
-        if [ ! "$formula_installed" -eq 0 ]; then
-            echo "Installing '$t' formula..."
-            brew install "$t"
-        fi
-    done
+    # Only do this for macOS
+    if [[ "$OSTYPE" == "darwin"* ]]; then
 
-    # Install Homebrew Casks, NPM packages, and Mac App Store apps
-    install_casks
+        # loop through the formulas, install missing ones
+        for t in ${formulas[@]}; do
+            #echo "checking if $t formula is installed..."
+            brew ls --versions "$t" > /dev/null
+            formula_installed=$?
+            #echo "$t installed: $formula_installed"
+            if [ ! "$formula_installed" -eq 0 ]; then
+                echo "Installing '$t' formula..."
+                brew install "$t"
+            fi
+        done
+
+        # Install Homebrew Casks, NPM packages, and Mac App Store apps
+        install_casks
+        app_store_install
+    fi
+
     npm_install
     extensions_install
     configure_git
-    app_store_install
+
     # add_dock_items
     # install_oh_my_zsh
-
-    # open Neofetch
-    neofetch
 }
 
 # Configure global git settings
@@ -499,6 +530,7 @@ function configure_git {
     git config --global color.ui true
     git config --global core.autocrlf input
     git config --global init.defaultBranch main
+    git config --global core.editor "vi"
     # Should use appropriate credentials based on repo
     # https://git-scm.com/docs/gitcredentials#Documentation/gitcredentials.txt-useHttpPath
     git config --global credential.useHttpPath true
@@ -518,3 +550,6 @@ function myip {
 
 # install Homebrew and some formulas, then run neofetch
 brew_install
+
+# open Neofetch
+neofetch

@@ -23,25 +23,30 @@ alias sail='bash vendor/bin/sail'
 # https://www.cyberciti.biz/faq/apple-mac-osx-terminal-color-ls-output-option/
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
+if [[ "$OSTYPE" == "darwin"* ]]; then
 alias ls='ls -G'
+elif [[ "$OSTYPE" == "linux"* ]]; then
+alias ls='ls --color=always'
+fi
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+
 # Set Homebrew Python 3 as the default
-alias python=/usr/local/bin/python3
+# alias python=/usr/local/bin/python3
 
 # Add brew ruby and gems path to use newer version
-export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
-export PATH="$HOME/.gem/ruby/3.0.0/bin:$PATH"
+# export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
+# export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
+# export PATH="$HOME/.gem/ruby/3.0.0/bin:$PATH"
 
 # Set SDKROOT as needed for Jekyll on macOS
 # https://jekyllrb.com/docs/installation/macos/
 # xcode-select --install
 # If the above command doesn't allow you to find xcrun, try
 # sudo xcode-select --reset
-export SDKROOT=$(xcrun --show-sdk-path)
+# export SDKROOT=$(xcrun --show-sdk-path)
 
-JEKYLL_GITHUB_TOKEN=$(echo | git credential-osxkeychain get | grep password)
-export JEKYLL_GITHUB_TOKEN=${JEKYLL_GITHUB_TOKEN//password=/}
+# JEKYLL_GITHUB_TOKEN=$(echo | git credential-osxkeychain get | grep password)
+# export JEKYLL_GITHUB_TOKEN=${JEKYLL_GITHUB_TOKEN//password=/}

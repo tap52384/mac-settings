@@ -2,7 +2,9 @@
 # https://unix.stackexchange.com/a/71258
 
 # Add Visual Studio Code (code)
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+fi
 
 # Add Python 3.6 via Homebrew
 export PATH="/usr/local/bin/python3:$PATH"
