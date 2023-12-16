@@ -5,7 +5,6 @@
     "phpcs.executablePath": ".composer/vendor/squizlabs/php_codesniffer/bin/phpcs",
     "phpmd.command": "/Users/patrick/.composer/vendor/phpmd/phpmd/src/bin/phpmd",
     "phpcs.standard": "PSR2",
-    "files.trimTrailingWhitespace": true,
     "python.pythonPath": "/usr/local/bin/python3",
     "python.linting.pylintEnabled": true,
     "workbench.colorTheme": "Monokai",
@@ -38,9 +37,10 @@
     "java.configuration.runtimes": [],
     "files.exclude": {
         "**/.classpath": true,
+        "**/.factorypath": true,
+        "**/.git": false,
         "**/.project": true,
-        "**/.settings": true,
-        "**/.factorypath": true
+        "**/.settings": true
     },
     "python.languageServer": "Pylance",
     "editor.linkedEditing": true,
@@ -52,7 +52,7 @@
         "--extension-pkg-whitelist=cx_Oracle"
     ],
     "java.refactor.renameFromFileExplorer": "preview",
-    "shellcheck.executablePath": "/usr/local/bin/shellcheck",
+    "shellcheck.executablePath": "/opt/homebrew/bin/shellcheck",
     "eslint.validate": [
         "javascript",
         "javascriptreact",
@@ -70,11 +70,12 @@
     "editor.largeFileOptimizations": false,
     "workbench.startupEditor": "welcomePage",
     "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
+        "*.ipynb": "jupyter-notebook",
+        "*.xlsx": "default"
     },
     "python.analysis.typeCheckingMode": "basic",
     "security.workspace.trust.untrustedFiles": "open",
-    "python.defaultInterpreterPath": "/usr/local/bin/python3",
+    "python.defaultInterpreterPath": "C:\\Users\\zplewis\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
     "notebook.cellToolbarLocation": {
         "default": "right",
         "jupyter-notebook": "left"
@@ -89,5 +90,51 @@
     "google-java-format.executable-path": "/usr/local/bin/google-java-format",
     "[java]": {
         "editor.defaultFormatter": "ilkka.google-java-format"
+    },
+    "shellcheck.ignorePatterns": {
+        "**/*.xonshrc": true,
+        "**/*.xsh": true,
+        "**/*.zsh": true,
+        "**/*.zshrc": true,
+        "**/zshrc": true,
+        "**/*.zprofile": true,
+        "**/zprofile": true,
+        "**/*.zlogout": true,
+        "**/zlogout": true,
+        "**/*.zshenv": true,
+        "**/zshenv": true,
+        "**/*.zsh-theme": true
+    },
+    "files.autoGuessEncoding": true,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "remote.SSH.remotePlatform": {
+        "comp431sp23.cs.unc.edu": "linux",
+        "comp431sp23b.cs.unc.edu": "linux"
+    },
+    "remote.SSH.remoteServerListenOnSocket": true,
+    "cSpell.ignoreWords": [
+        "zplewis"
+    ],
+    "files.trimTrailingWhitespace": true,
+    "git.terminalAuthentication": false,
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "terminal.integrated.fontWeight": "normal",
+    "debug.openDebug": "openOnDebugBreak",
+    "editor.tabCompletion": "off",
+    "powershell.integratedConsole.focusConsoleOnExecute": true,
+    "files.defaultLanguage": "",
+    "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
+    "powershell.buttons.showPanelMovementButtons": false,
+    "powershell.codeFolding.showLastLine": true,
+    "powershell.debugging.createTemporaryIntegratedConsole": true,
+    "window.menuBarVisibility": "compact",
+    "dev.containers.workspaceMountConsistency": "consistent",
+    "SAS.connectionProfiles": {
+        "activeProfile": "",
+        "profiles": {}
     }
 }
