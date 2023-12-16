@@ -52,8 +52,8 @@ function update_formulas {
     # Update all Mac App Store apps
     # mas upgrade
     # Install and Update PHP Composer
-    install_composer
-    composer selfupdate
+    #install_composer
+    #composer selfupdate
 
     command -v docker > /dev/null
     DOCKER_INSTALLED=$?
@@ -162,11 +162,11 @@ function add_dock_items {
     done
 
     apps=(
-        'Reminders'
-        'Mail'
-        'Launchpad'
+        # 'Reminders'
+        # 'Mail'
+        # 'Launchpad'
         'News'
-        'Podcasts'
+        # 'Podcasts'
     )
 
     # Remove items from dock
@@ -179,59 +179,6 @@ function add_dock_items {
     dockutil --move 'iTerm' --after 'Notes'
     dockutil --move 'Visual Studio Code' --after 'Notes'
     dockutil --move 'Microsoft Outlook' --after 'Google Chrome'
-}
-
-function extensions_install {
-    # Atom extensions
-    atom=(
-        'busy-signal'
-        'docblockr'
-        'file-icons'
-        'intentions'
-        'language-blade'
-        'language-dotenv'
-        'linter'
-        'linter-eslint'
-        'linter-markdown'
-        'linter-php'
-        'linter-phpcs'
-        'linter-phpmd'
-        'linter-ui-default'
-        'monokai'
-    )
-
-    # Visual Studio Code extensions
-    vscode=(
-        '77qingliu.sas-syntax'
-        # Official Microsoft extension for Docker
-        'ms-azuretools.vscode-docker'
-        # Official Microsoft extension for Python
-        'ms-python.python'
-        # Official Microsoft extension for using Docker containers
-        'ms-vscode-remote.remote-containers',
-        # ShellCheck linter for Bash Scripts
-        'timonwong.shellcheck'
-    )
-
-    # Install Atom extensions (if atom is installed)
-    command -v apm > /dev/null
-    ATOM_INSTALLED=$?
-
-    if [ "$ATOM_INSTALLED" -eq 0 ]; then
-        for t in ${atom[@]}; do
-            apm install $t
-        done
-    fi;
-
-    # Install Visual Studio Code extensions
-    which code > /dev/null
-    VSCODE_INSTALLED=$?
-
-    if [ "$VSCODE_INSTALLED" -eq 0 ]; then
-        for t in ${vscode[@]}; do
-            code --install-extension $t
-        done
-    fi;
 }
 
 function app_store_install {
@@ -309,27 +256,13 @@ function npm_install {
     done
 }
 
-function apt_install {
-    if ! command -v "apt" &> /dev/null; then
-        return 0;
-    fi
-
-    # Update and upgrade your packages using the preferred package manager for
-    # the distruction (apt for Ubuntu)
-    sudo apt update && sudo apt upgrade
-    sudo apt install \
-    build-essential \
-    neofetch \
-    shellcheck
-}
-
 function install_oh_my_zsh {
     # Install Oh My Zsh - https://github.com/ohmyzsh/ohmyzsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     # Install Powerlevel10k theme for Oh My Zsh
     # https://github.com/romkatv/powerlevel10k#installation
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-    echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>! ~/.zshrc
+    # git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+    # echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>! ~/.zshrc
 }
 
 function install_casks {
@@ -349,32 +282,41 @@ function install_casks {
         casks=(
             '4k-video-downloader'
             'adobe-creative-cloud'
-	        'audacity'
-            # Like SQL Developer, but for SQL Server
+	    # A terminal emulator, like iTerm2
+	    'alacritty'
+	    # Cross-platform audio application
+	    'audacity'
+            # Like SQL Developer, but for Microsoft SQL Server
             'azure-data-studio'
             'brave-browser'
             'calibre'
             'clone-hero'
             'docker'
             'dotnet-sdk'
+	    # I'm not sure yet; helps with the command line
+	    'fig'
             'firefox'
+	    # Clipboard with history
             'flycut'
             'google-chrome'
-	        'google-drive'
+	    'google-drive'
             # 'grammarly'
             'intellij-idea-ce'
             'iterm2'
-            'itsycal'
+	    # Calendar finder bar app; replaced by Outlook's "My Day" feature
+            # 'itsycal'
             'lastpass'
             'mactex'
-            'macpass'
             'microsoft-teams'
             'mysqlworkbench'
-	        'obs'
-            'onedrive'
+	    # Open-source streaming software
+	    'obs'
+            # 'onedrive'
             'openemu'
             'powershell'
             'postman'
+	    # Capture, inspect, and manipulate HTTP(s) traffic
+	    # https://proxyman.io
             'proxyman'
             'retroarch'
             'sf-symbols'
@@ -384,11 +326,13 @@ function install_casks {
             'spotify'
             # 'sublime-text'
             # 'tableau-reader'
+	    # Official twitch streaming software
+	    'twitch-studio'
             'virtualbox'
             'virtualbox-extension-pack'
             'visual-studio-code'
             'vlc'
-	        'wine-stable'
+	    'wine-stable'
             'youtube-to-mp3'
             'zoom'
         )
@@ -470,19 +414,21 @@ function brew_install {
         # Pandoc - a universal document converter (https://pandoc.org)
         # https://github.com/jgm/pandoc
         pandoc
-        php
-        podman
-        romkatv/powerlevel10k/powerlevel10k
+        # php
+        # podman
+        # romkatv/powerlevel10k/powerlevel10k
 	ruby
         # Linter for Bash scripts
         shellcheck
+	
+	# https://github.com/openshift/source-to-image
         source-to-image
 	# Open source file recovery utility (https://www.cgsecurity.org/)
 	# TestDisk and PhotoRec are installed
 	testdisk
         tmux
         tree
-	vagrant
+	# vagrant
         webp
         # zsh
         zsh-autosuggestions
@@ -510,8 +456,6 @@ function brew_install {
         app_store_install
     fi
 
-    npm_install
-    extensions_install
     configure_git
 
     # add_dock_items
