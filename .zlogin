@@ -288,6 +288,8 @@ function install_casks {
 	    'audacity'
             # Like SQL Developer, but for Microsoft SQL Server
             'azure-data-studio'
+	    # App for managing display settings
+	    'betterdisplay'
             'brave-browser'
             'calibre'
             'clone-hero'
@@ -409,6 +411,7 @@ function brew_install {
         mas
         neofetch
         mame
+	maven
         # ntfs-3g
         openshift-cli
         # Pandoc - a universal document converter (https://pandoc.org)
