@@ -398,7 +398,8 @@ function brew_install {
         # Command line tool for managing dock items
         # https://github.com/kcrawford/dockutil
         # dockutil
-        gh
+        ffmpeg
+	gh
         git
         git-extras
         java

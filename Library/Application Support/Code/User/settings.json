@@ -136,6 +136,5 @@
     "SAS.connectionProfiles": {
         "activeProfile": "",
         "profiles": {}
-    },
-    "synapse.localWorkFolderPath": "/Users/zplewis/Downloads"
+    }
 }
