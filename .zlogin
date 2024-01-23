@@ -300,6 +300,7 @@ function install_casks {
             'firefox'
 	    # Clipboard with history
             'flycut'
+	    'gimp'
             'google-chrome'
 	    'google-drive'
             # 'grammarly'
