@@ -44,6 +44,7 @@ function update_formulas {
 
     brew update
     brew upgrade
+    brew upgrade --cask
     brew cleanup -s
     brew doctor
     brew missing
