@@ -20,4 +20,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/zplewis/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/zplewis/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/zplewis/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/zplewis/google-cloud-sdk/completion.zsh.inc'; fi

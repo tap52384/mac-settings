@@ -39,7 +39,7 @@ function update_formulas {
     XCODE_CLI_TOOLS_INSTALLED=$?
 
     if [ ! "$XCODE_CLI_TOOLS_INSTALLED" -eq 0 ]; then
-	xcode-select --install
+    xcode-select --install
     fi
 
     brew update
@@ -62,7 +62,7 @@ function update_formulas {
     if [ "$DOCKER_INSTALLED" -eq 0 ]; then
         # Prune every docker object, including volumes
         # https://docs.docker.com/config/pruning/
-        docker system prune --volumes -f
+        docker system prune -a --volumes -f
     else
         echo "Docker is not installed; system prune failed."
     fi
@@ -208,7 +208,7 @@ function app_store_install {
         '1496833156' # Playgrounds (3.3.1)
         '640199958'  # Developer (8.4)
         '409203825'  # Numbers
-	'1193539993' # Brother iPrint&Scan
+        '1193539993' # Brother iPrint&Scan
     )
 
     command -V mas > /dev/null
@@ -257,15 +257,6 @@ function npm_install {
     done
 }
 
-function install_oh_my_zsh {
-    # Install Oh My Zsh - https://github.com/ohmyzsh/ohmyzsh
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    # Install Powerlevel10k theme for Oh My Zsh
-    # https://github.com/romkatv/powerlevel10k#installation
-    # git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-    # echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>! ~/.zshrc
-}
-
 function install_casks {
         # Install Homebrew Cask
         update_formulas
@@ -283,44 +274,50 @@ function install_casks {
         casks=(
             '4k-video-downloader'
             'adobe-creative-cloud'
-	    # A terminal emulator, like iTerm2
-	    'alacritty'
-	    # Cross-platform audio application
-	    'audacity'
+            # A terminal emulator, like iTerm2
+            'alacritty'
+            # Cross-platform audio application
+            'audacity'
             # Like SQL Developer, but for Microsoft SQL Server
             'azure-data-studio'
-	    # App for managing display settings
-	    'betterdisplay'
+            # App for managing display settings
+            'betterdisplay'
             'brave-browser'
             'calibre'
+            'chatgpt'
             'clone-hero'
+            'discord'
             'docker'
+            'dolphin'
             'dotnet-sdk'
-	    # I'm not sure yet; helps with the command line
-	    'fig'
+            # I'm not sure yet; helps with the command line
+            #'fig'
+            'fightcade' # This is a fighting game emulator
             'firefox'
-	    # Clipboard with history
+            # Clipboard with history
             'flycut'
-	    'gimp'
+            #'gimp' - I bought Adobe Photoshop Elements
             'google-chrome'
-	    'google-drive'
-            # 'grammarly'
+            'google-drive'
+	        'heroic' # use with whisky to play games on mac like from gog.com
             'intellij-idea-ce'
             'iterm2'
-	    # Calendar finder bar app; replaced by Outlook's "My Day" feature
+            # Calendar finder bar app; replaced by Outlook's "My Day" feature
             # 'itsycal'
             'lastpass'
             'mactex'
             'microsoft-teams'
             'mysqlworkbench'
-	    # Open-source streaming software
-	    'obs'
+            # Open-source streaming software
+            'obs'
             # 'onedrive'
             'openemu'
+            'paragon-ntfs' # NTFS for Mac
+            'podman-desktop'    # Podman Desktop
             'powershell'
             'postman'
-	    # Capture, inspect, and manipulate HTTP(s) traffic
-	    # https://proxyman.io
+            # Capture, inspect, and manipulate HTTP(s) traffic
+            # https://proxyman.io
             'proxyman'
             'retroarch'
             'sf-symbols'
@@ -330,13 +327,15 @@ function install_casks {
             'spotify'
             # 'sublime-text'
             # 'tableau-reader'
-	    # Official twitch streaming software
-	    'twitch-studio'
+            # Official twitch streaming software
+            # 'twitch-studio'
             'virtualbox'
             'virtualbox-extension-pack'
             'visual-studio-code'
+            'vmware-fusion'
             'vlc'
-	    'wine-stable'
+	        'whisky' # getwhisky.app; run modern games on macOS
+            'wine-stable'
             'youtube-to-mp3'
             'zoom'
         )
@@ -383,10 +382,10 @@ function brew_install {
         fi
     fi
 
-    # stop here if neofetch is already installed;
+    # stop here if fastfetch is already installed;
     # verifying installed formula can take seconds
     # This prevents the rest of this function from running more than once.
-    if command -v "neofetch" &> /dev/null; then
+    if command -v "fastfetch" &> /dev/null; then
         return 0;
     fi
 
@@ -395,13 +394,14 @@ function brew_install {
         # bash
         brew-cask-completion
         cask
-	coreutils
+        coreutils
         ctags
         # Command line tool for managing dock items
         # https://github.com/kcrawford/dockutil
         # dockutil
+        fastfetch # replaces neofetch
         ffmpeg
-	gh
+        gh
         git
         git-extras
         java
@@ -412,29 +412,29 @@ function brew_install {
         libiconv
         # mac app store - https://github.com/mas-cli/mas
         mas
-        neofetch
+        # neofetch - replaced by fastfetch - https://github.com/fastfetch-cli/fastfetch
         mame
-	maven
+        maven
         # ntfs-3g
         openshift-cli
         # Pandoc - a universal document converter (https://pandoc.org)
         # https://github.com/jgm/pandoc
         pandoc
         # php
-        # podman
+        podman
         # romkatv/powerlevel10k/powerlevel10k
-	ruby
+        ruby
         # Linter for Bash scripts
         shellcheck
-	
-	# https://github.com/openshift/source-to-image
+
+        # https://github.com/openshift/source-to-image
         source-to-image
-	# Open source file recovery utility (https://www.cgsecurity.org/)
-	# TestDisk and PhotoRec are installed
-	testdisk
+        # Open source file recovery utility (https://www.cgsecurity.org/)
+        # TestDisk and PhotoRec are installed
+        testdisk
         tmux
         tree
-	# vagrant
+        # vagrant
         webp
         # zsh
         zsh-autosuggestions
@@ -443,6 +443,7 @@ function brew_install {
     )
 
     # Only do this for macOS
+    # This checks whether the environment variable $OSTYPE starts with "darwin"
     if [[ "$OSTYPE" == "darwin"* ]]; then
 
         # loop through the formulas, install missing ones
@@ -463,9 +464,6 @@ function brew_install {
     fi
 
     configure_git
-
-    # add_dock_items
-    # install_oh_my_zsh
 }
 
 # Configure global git settings
@@ -498,8 +496,8 @@ function myip {
     echo $(ifconfig | grep -v 127.0.0.1 | grep -v ::1 | grep -i "broadcast" | grep "inet")
 }
 
-# install Homebrew and some formulas, then run neofetch
+# install Homebrew and some formulas, then run fastfetch
 brew_install
 
-# open Neofetch
-neofetch
+# open fastfetch
+fastfetch

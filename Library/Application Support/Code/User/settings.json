@@ -6,10 +6,8 @@
     "phpmd.command": "/Users/patrick/.composer/vendor/phpmd/phpmd/src/bin/phpmd",
     "phpcs.standard": "PSR2",
     "python.pythonPath": "/usr/local/bin/python3",
-    "python.linting.pylintEnabled": true,
     "workbench.colorTheme": "Monokai",
     "[log]": {},
-    "python.linting.pylintPath": "/usr/local/bin/pylint",
     "git.autofetch": true,
     "liveshare.audio.joinCallBehavior": "accept",
     "editor.minimap.enabled": false,
@@ -32,7 +30,6 @@
     },
     "diffEditor.ignoreTrimWhitespace": false,
     "remote.containers.workspaceMountConsistency": "consistent",
-    "python.linting.pylintUseMinimalCheckers": false,
     "java.semanticHighlighting.enabled": true,
     "java.configuration.runtimes": [],
     "files.exclude": {
@@ -48,9 +45,6 @@
         "-x"
     ],
     "editor.renderWhitespace": "all",
-    "python.linting.pylintArgs": [
-        "--extension-pkg-whitelist=cx_Oracle"
-    ],
     "java.refactor.renameFromFileExplorer": "preview",
     "shellcheck.executablePath": "/opt/homebrew/bin/shellcheck",
     "eslint.validate": [
@@ -136,5 +130,38 @@
     "SAS.connectionProfiles": {
         "activeProfile": "",
         "profiles": {}
-    }
+    },
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "git.confirmSync": false,
+    "yaml.customTags": [
+        "!And",
+        "!And sequence",
+        "!If",
+        "!If sequence",
+        "!Not",
+        "!Not sequence",
+        "!Equals",
+        "!Equals sequence",
+        "!Or",
+        "!Or sequence",
+        "!FindInMap",
+        "!FindInMap sequence",
+        "!Base64",
+        "!Join",
+        "!Join sequence",
+        "!Cidr",
+        "!Ref",
+        "!Sub",
+        "!Sub sequence",
+        "!GetAtt",
+        "!GetAZs",
+        "!ImportValue",
+        "!ImportValue sequence",
+        "!Select",
+        "!Select sequence",
+        "!Split",
+        "!Split sequence"
+    ],
+    "aws.telemetry": false,
+    "editor.fontFamily": "Menlo, Monaco, Consolas, 'Courier New', monospace"
 }
