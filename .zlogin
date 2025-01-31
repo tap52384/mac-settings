@@ -16,6 +16,79 @@ function mkcd {
   fi
 }
 
+# purpose is to print various checksums used when mame is verifying files
+# not really that useful
+function mame_checksums {
+	for file in *; do
+		if [ -f "$file" ]; then
+			size=$(stat -f "%z" "$file")
+			crc32=$(crc32 "$file")
+			sha1=$(sha1sum "$file" | awk '{print $1}')
+			echo "$file\t\t\t\t$size\tCRC($crc32)\tSHA1($sha1)";
+		fi
+	done
+}
+
+# This function installs all shell and Python dependencies necessary to use OpenAI Whisper locally.
+# OpenAI Whisper is used for transcribing audio to text for free using your computer:
+# https://github.com/openai/whisper
+function start_whisper {
+    local virtualenv_name="openai_whisper_venv"
+
+    # See if Rust is installed
+    command -v cargo > /dev/null
+    RUST_INSTALLED=$?
+
+    if [ ! "$RUST_INSTALLED" -eq 0 ]; then
+        echo "Rust not installed; downloading and installing now..."
+        # Go to the URL below to see what script is called; we are passing "-y" to install using
+        # the defaults. If Rust is already installed, it doesn't do anything.
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    fi
+
+    # 0. Make sure ffmpeg is installed via brew
+    brew install ffmpeg
+    brew upgrade ffmpeg
+    # 1. Make sure Python 3.12 is installed as this is the only version we got to work with
+    # using pip to install openai-whisper
+    brew install pyenv
+    brew upgrade pyenv
+    # 2. Installs Python 3.12 if it is not installed already
+    pyenv install 3.12 -s
+    # 3. Create a virtualenv for openai-whisper using Python 3.12, the only version that has worked
+    # so far; "-f" forces creation every time
+    pyenv virtualenv 3.12 "${virtualenv_name}" -f
+    # 4. Activate the virtualenv and install some packages
+    pyenv activate "${virtualenv_name}"
+    python -m pip install --upgrade pip
+    pip install setuptools-rust
+    pip install -U openai-whisper
+    # 5. Verify that whisper is available as a command
+    command -v whisper > /dev/null
+    WHISPER_INSTALLED=$?
+
+    if [ ! "$WHISPER_INSTALLED" -eq 0 ]; then
+        echo "OpenAI Whisper is not installed."
+        exit() { return 1; }
+    fi
+
+    echo "OpenAI Whisper is installed and ready."
+
+    # Example usage
+    # This will download the model if it does not exist already
+    # Redirect the output to a *.vtt file
+    # whisper "path to audio file" --language English --model turbo --output_format vtt
+
+    # It is possible to trim audio using ffmpeg, which is one of the requirements for OpenAI Whisper:
+    # This outputs to a *.wav file
+    # ffmpeg -i "audio_file.m4a" -t 13 -acodec copy "trimmed_file.wav" -y
+    # This outputs to an *.m4a file
+    # -ss start time in seconds
+    # -t trimmed audio will be n seconds long (13 in this example)
+
+    # ffmpeg -i "audio_file.m4a" -ss 78 -t 13 -c:a aac -b:a 192k "trimmed_file.m4a" -y
+}
+
 function install_composer {
     # Install PHP Composer
     command -v composer > /dev/null
@@ -335,7 +408,7 @@ function install_casks {
             'vmware-fusion'
             'vlc'
 	        'whisky' # getwhisky.app; run modern games on macOS
-            'wine-stable'
+            # 'wine-stable'; this is not needed if you install Whisky
             'youtube-to-mp3'
             'zoom'
         )
