@@ -7,6 +7,15 @@
     "phpcs.standard": "PSR2",
     "python.pythonPath": "/usr/local/bin/python3",
     "workbench.colorTheme": "Monokai",
+    "workbench.colorCustomizations": {
+        // answer for removing spelling issues from the Problems tab:
+        // https://stackoverflow.com/a/50322474/1620794
+        // will change the color of three dots to red
+        // you can also hide the built-in three dots by making them transparent: #f000
+        "editorHint.foreground": "#FF0000",
+        // will underline the entire word with dots in your chosen color
+        "editorHint.border": "#00FF66",
+    },
     "[log]": {},
     "git.autofetch": true,
     "liveshare.audio.joinCallBehavior": "accept",
@@ -163,5 +172,16 @@
         "!Split sequence"
     ],
     "aws.telemetry": false,
-    "editor.fontFamily": "Menlo, Monaco, Consolas, 'Courier New', monospace"
+    "editor.fontFamily": "Menlo, Monaco, Consolas, 'Courier New', monospace",
+    "cSpell.diagnosticLevel": "Hint",
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "mssql.connectionGroups": [
+        {
+            "name": "ROOT",
+            "id": "8973F11A-5F83-4D04-B862-18B5D52857A7"
+        }
+    ],
+    "mssql.connections": []
 }

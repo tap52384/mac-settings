@@ -139,6 +139,17 @@ function update_formulas {
     else
         echo "Docker is not installed; system prune failed."
     fi
+
+    command -v podman > /dev/null
+    PODMAN_INSTALLED=$?
+
+    if [ "$PODMAN_INSTALLED" -eq 0 ]; then
+        # Prune every podman object, including volumes
+        # https://docs.podman.io/en/latest/markdown/podman-system-prune.1.html
+        podman system prune -a --volumes -f
+    else
+        echo "Podman is not installed; system prune failed."
+    fi
 }
 
 function oc-rsh {
@@ -358,6 +369,7 @@ function install_casks {
             'brave-browser'
             'calibre'
             'chatgpt'
+            'cemu' # emulator for the TI-84 Plus CE
             'clone-hero'
             'discord'
             'docker'
