@@ -412,8 +412,7 @@ function install_casks {
             'spotify'
             # 'sublime-text'
             # 'tableau-reader'
-            # Official twitch streaming software
-            # 'twitch-studio'
+            'ti-connect-ce' # TI Connect CE app for TI-84 Plus CE calculator
             'virtualbox'
             'virtualbox-extension-pack'
             'visual-studio-code'
