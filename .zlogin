@@ -115,7 +115,17 @@ function update_formulas {
     xcode-select --install
     fi
 
-    brew update
+    # If the xcode license has not been accepted, "brew update" will fail.
+    # This will check if it failed for that reason and then attempt to
+    # accept the license.
+    brew_output=$(brew update 2>&1) || true
+    if echo "$brew_output" | grep -qiE "xcode.*license.*agree|agree.*xcode.*license"; then
+        echo "Xcode license not accepted; attempting to accept it now..."
+        sudo xcodebuild -license accept
+        brew update
+    fi
+
+    # brew update
     brew upgrade
     brew upgrade --cask
     brew cleanup -s
@@ -476,6 +486,9 @@ function brew_install {
     # list of formulas to install
     formulas=(
         # bash
+        # modern audio driver for macOS for recording system audio while
+        # recording the screen
+        blackhole-2ch
         brew-cask-completion
         cask
         coreutils
