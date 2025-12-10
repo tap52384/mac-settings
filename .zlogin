@@ -369,11 +369,11 @@ function install_casks {
             '4k-video-downloader'
             'adobe-creative-cloud'
             # A terminal emulator, like iTerm2
-            'alacritty'
+            # 'alacritty'
             # Cross-platform audio application
             'audacity'
             # Like SQL Developer, but for Microsoft SQL Server
-            'azure-data-studio'
+            # 'azure-data-studio'
             # App for managing display settings
             'betterdisplay'
             'brave-browser'
@@ -395,7 +395,7 @@ function install_casks {
             'google-chrome'
             'google-drive'
 	        'heroic' # use with whisky to play games on mac like from gog.com
-            'intellij-idea-ce'
+            # 'intellij-idea-ce'
             'iterm2'
             # Calendar finder bar app; replaced by Outlook's "My Day" feature
             # 'itsycal'
@@ -409,14 +409,14 @@ function install_casks {
             'openemu'
             'paragon-ntfs' # NTFS for Mac
             'podman-desktop'    # Podman Desktop
-            'powershell'
+            # 'powershell'
             'postman'
             # Capture, inspect, and manipulate HTTP(s) traffic
             # https://proxyman.io
             'proxyman'
             'retroarch'
             'sf-symbols'
-            'skype'
+            # 'skype'
             'slack'
             'soapui'
             'spotify'
@@ -428,7 +428,7 @@ function install_casks {
             'visual-studio-code'
             'vmware-fusion'
             'vlc'
-	        'whisky' # getwhisky.app; run modern games on macOS
+	        # 'whisky' # getwhisky.app; run modern games on macOS
             # 'wine-stable'; this is not needed if you install Whisky
             'youtube-to-mp3'
             'zoom'

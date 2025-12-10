@@ -37,7 +37,7 @@
     "files.associations": {
         "*.sql": "sql"
     },
-    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.ignoreTrimWhitespace": true,
     "remote.containers.workspaceMountConsistency": "consistent",
     "java.semanticHighlighting.enabled": true,
     "java.configuration.runtimes": [],
@@ -183,5 +183,9 @@
             "id": "8973F11A-5F83-4D04-B862-18B5D52857A7"
         }
     ],
-    "mssql.connections": []
+    "mssql.connections": [],
+    "sqldeveloper.telemetry.enabled": true,
+    "sqldeveloper.sqlHistory.historyLimit": 500,
+    "onestream.enablePremiumFeatures": false,
+    "docker.extension.enableComposeLanguageServer": false
 }
